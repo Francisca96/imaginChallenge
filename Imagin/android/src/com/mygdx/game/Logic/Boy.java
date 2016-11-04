@@ -38,6 +38,7 @@ public class Boy extends Character {
     @Override
     public void update(float dt) {
         handleInput();
+        rectangle.setPosition(bdef.position.x-16,bdef.position.y-16);
     }
 
     @Override
@@ -48,6 +49,26 @@ public class Boy extends Character {
     @Override
     public Rectangle getBoundaries(){
         return rectangle;
+    }
+
+    public void moveUp(){
+        bdef.position.set(getPositionX(),getPositionY() + 5);
+        position.add(0,5);
+    }
+
+    public void moveDown(){
+        bdef.position.set(getPositionX(),getPositionY() - 5);
+        position.add(0,-5);
+    }
+
+    public void moveLeft(){
+        bdef.position.set(getPositionX() + 5,getPositionY());
+        position.add(5,0);
+    }
+
+    public void moveRight(){
+        bdef.position.set(getPositionX() - 5,getPositionY());
+        position.add(-5,0);
     }
 
 

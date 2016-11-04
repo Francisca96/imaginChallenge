@@ -21,13 +21,14 @@ public abstract class Character extends Sprite{
     protected Texture texture;
     protected World world;
     protected Body body;
+    protected BodyDef bdef;
     public Rectangle rectangle;
 
 
     protected Character(float x, float y, int frames, World world){
         position = new Vector2(x, y);
         this.world = world;
-        BodyDef bdef = new BodyDef();
+        bdef = new BodyDef();
         bdef.position.set(position.x,position.y);
         bdef.type = BodyDef.BodyType.DynamicBody;
         body = world.createBody(bdef);
