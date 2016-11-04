@@ -1,6 +1,7 @@
 package com.mygdx.game.Logic;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.physics.box2d.World;
 
 /**
  * Created by Joao on 04-11-2016.
@@ -8,8 +9,8 @@ import com.badlogic.gdx.graphics.Texture;
 public class Dog extends Character {
 
 
-    public Dog(float x, float y, int frames){
-        super(x, y, frames);
+    public Dog(float x, float y, int frames, World world){
+        super(x, y, frames, world);
     }
 
     @Override
