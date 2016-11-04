@@ -22,5 +22,6 @@ public class Imagin extends Game {
 	@Override
 	public void render () {
 		super.render();
+
 	}
 }

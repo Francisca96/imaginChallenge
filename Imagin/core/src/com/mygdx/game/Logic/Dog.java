@@ -48,4 +48,24 @@ public class Dog extends Character {
     public Rectangle getBoundaries(){
         return rectangle;
     }
+
+    @Override
+    public void moveDown() {
+        
+    }
+
+    @Override
+    public void moveRight() {
+
+    }
+
+    @Override
+    public void moveLeft() {
+
+    }
+
+    @Override
+    public void moveUp() {
+
+    }
 }
