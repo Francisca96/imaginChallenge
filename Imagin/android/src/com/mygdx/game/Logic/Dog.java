@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
  */
 public class Dog extends Character {
 
-    
+
     public Dog(float x, float y, int frames){
         super(x, y, frames);
     }
