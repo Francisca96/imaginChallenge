@@ -17,10 +17,11 @@ import com.badlogic.gdx.physics.box2d.World;
  */
 public abstract class Character extends Sprite{
     protected Vector2 position;
-    protected Animation animation;
+   // protected Animation animation;
     protected Texture texture;
     protected World world;
     protected Body body;
+    public Rectangle rectangle;
 
 
     protected Character(float x, float y, int frames, World world){
@@ -38,12 +39,11 @@ public abstract class Character extends Sprite{
 
         body.createFixture(fdef).setUserData(this);
 
-
-
+        rectangle.set(body.getPosition().x -16, body.getPosition().y -16,32,32);
 
         texture = new Texture("img");
 
-        animation = new Animation(new TextureRegion(texture), frames, 0.5f);
+        //animation = new Animation(new TextureRegion(texture), frames, 0.5f);
     }
 
     public abstract float getPositionX();
@@ -52,4 +52,5 @@ public abstract class Character extends Sprite{
     public abstract void handleInput();
     public abstract void update(float dt);
     public abstract void dispose();
+    public abstract Rectangle getBoundaries();
 }
