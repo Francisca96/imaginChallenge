@@ -27,6 +27,7 @@ public abstract class Character extends Sprite{
 
     protected Character(float x, float y, int frames, World world){
         position = new Vector2(x, y);
+        rectangle = new Rectangle(0,0,32,32);
         this.world = world;
         bdef = new BodyDef();
         bdef.position.set(position.x,position.y);
@@ -42,7 +43,7 @@ public abstract class Character extends Sprite{
 
         rectangle.set(body.getPosition().x -16, body.getPosition().y -16,32,32);
 
-        texture = new Texture("img");
+        texture = new Texture("badlogic.jpg");
 
         //animation = new Animation(new TextureRegion(texture), frames, 0.5f);
     }
