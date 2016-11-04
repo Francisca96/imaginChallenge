@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.Texture;
  */
 public class Girl extends Character {
 
+
+
     public Girl(float x, float y, int frames){
         super(x, y, frames);
     }
