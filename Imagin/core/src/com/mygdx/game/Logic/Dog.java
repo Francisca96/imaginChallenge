@@ -51,7 +51,7 @@ public class Dog extends Character {
 
     @Override
     public void moveDown() {
-        
+
     }
 
     @Override

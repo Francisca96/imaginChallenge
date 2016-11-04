@@ -2,6 +2,7 @@ package com.mygdx.game.Logic;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 
 /**
@@ -39,6 +40,8 @@ public class Boy extends Character {
     public void update(float dt) {
         handleInput();
         rectangle.setPosition(bdef.position.x-16,bdef.position.y-16);
+        body.setTransform(position, 0);
+
     }
 
     @Override
@@ -52,7 +55,6 @@ public class Boy extends Character {
     }
 
     public void moveUp(){
-        bdef.position.set(getPositionX(),getPositionY() + 5);
         position.add(0,5);
     }
 
@@ -63,12 +65,12 @@ public class Boy extends Character {
 
     public void moveLeft(){
         bdef.position.set(getPositionX() + 5,getPositionY());
-        position.add(5,0);
+        position.add(-5,0);
     }
 
     public void moveRight(){
         bdef.position.set(getPositionX() - 5,getPositionY());
-        position.add(-5,0);
+        position.add(5,0);
     }
 
 
