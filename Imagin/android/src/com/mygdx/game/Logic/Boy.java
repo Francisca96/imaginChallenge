@@ -1,6 +1,7 @@
 package com.mygdx.game.Logic;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.World;
 
 /**
@@ -42,6 +43,11 @@ public class Boy extends Character {
     @Override
     public void dispose() {
         texture.dispose();
+    }
+
+    @Override
+    public Rectangle getBoundaries(){
+        return rectangle;
     }
 
 
