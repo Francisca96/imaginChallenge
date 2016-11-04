@@ -9,6 +9,7 @@ public class Boy extends Character {
 
     public Boy(float x, float y, int frames){
         super(x, y, frames);
+
     }
 
 
