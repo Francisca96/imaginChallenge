@@ -44,7 +44,7 @@ public class MenuScreen implements Screen{
 
     public MenuScreen(Imagin game){
         this.game = game;
-        this.background = new Texture("background.jpg");
+        this.background = new Texture("background.png");
 
         cam = new OrthographicCamera();
         cam.setToOrtho(false);

@@ -87,13 +87,13 @@ public class PlayScreen implements Screen {
                 if (contact.getFixtureA().getBody().getUserData() =="boy" && contact.getFixtureB().getBody().getUserData()=="girl")
                     win = 1;
 
-                if(contact.getFixtureA().getBody().getUserData()=="boy" && contact.getFixtureB().getBody().getUserData() == "dog")
+               else if(contact.getFixtureA().getBody().getUserData()=="boy" && contact.getFixtureB().getBody().getUserData() == "dog")
                     win = 2;
 
-                if(contact.getFixtureA().getBody().getUserData()=="boy" && contact.getFixtureB().getBody().getUserData() == "baby")
+                else if(contact.getFixtureA().getBody().getUserData()=="boy" && contact.getFixtureB().getBody().getUserData() == "baby")
                     win = 1;
 
-                if(contact.getFixtureA().getBody().getUserData()=="baby" && contact.getFixtureB().getBody().getUserData() == "dog")
+                else  if(contact.getFixtureA().getBody().getUserData()=="dog" && contact.getFixtureB().getBody().getUserData() == "baby")
                     win = 2;
             }
 
