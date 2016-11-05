@@ -55,7 +55,7 @@ public class PlayScreen implements Screen {
 
     public PlayScreen(Imagin game) {
         this.game = game;
-        this.background = new Texture("background.jpg");
+        this.background = new Texture("blue.png");
 
         world = new World(new Vector2(0,0), true);
 
