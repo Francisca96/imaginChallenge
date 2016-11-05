@@ -68,8 +68,13 @@ public class Hud implements Disposable{
                 score--;
             }
             scoreLabel.setText(String.format("%04d", score));
-            timeCount = 0;
+            timeCount = 0.1f;
         }
+    }
+
+    public boolean timeOver(){
+        if(score == 0) return true;
+        else return false;
     }
 
     @Override

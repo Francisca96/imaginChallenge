@@ -29,11 +29,14 @@ public class MenuScreen implements Screen{
     private Texture background;
     private TextureAtlas lvlMenuAtlas;
     private Skin skin;
+    private TextureAtlas lvlMoreAtlas;
+    private Skin moreSkin;
 
 
     //Inicializar botoes
     private ImageButton playBtn;
     private ImageButton shopBtn;
+    private ImageButton scoresBtn;
 
     public MenuScreen(Imagin game){
         this.game = game;
@@ -50,6 +53,7 @@ public class MenuScreen implements Screen{
 
         if (playBtn.isPressed()) game.setScreen(new PlayScreen(game));
         if(shopBtn.isPressed()) game.setScreen(new StoreScreen(game));
+        if(scoresBtn.isPressed()) game.setScreen(new MenuScreen(game));
 
     }
 
@@ -110,6 +114,11 @@ public class MenuScreen implements Screen{
         skin.addRegions(lvlMenuAtlas);
         stage.clear();
 
+        lvlMoreAtlas = new TextureAtlas("more.pack");
+        moreSkin = new Skin();
+        moreSkin.addRegions(lvlMoreAtlas);
+        stage.clear();
+
         //PlayButton
         playBtn = new ImageButton(skin.getDrawable("play"));
         playBtn.setSize(playBtn.getWidth(),playBtn.getHeight());
@@ -121,6 +130,13 @@ public class MenuScreen implements Screen{
         shopBtn.setSize(shopBtn.getWidth(),shopBtn.getHeight());
         shopBtn.setPosition(Imagin.V_WIDTH /2 - shopBtn.getWidth()/2, Imagin.V_HEIGHT/2 - 250);
         stage.addActor(shopBtn);
+
+        scoresBtn = new ImageButton(moreSkin.getDrawable("scores"));
+        scoresBtn.setSize(shopBtn.getWidth(),shopBtn.getHeight());
+        scoresBtn.setPosition(Imagin.V_WIDTH /2 - playBtn.getWidth()/2,Imagin.V_HEIGHT /2 - 330);
+        stage.addActor(scoresBtn);
+
+
 
         Gdx.input.setInputProcessor(stage);
     }

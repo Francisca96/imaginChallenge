@@ -166,6 +166,7 @@ public class PlayScreen implements Screen {
         if(hud.timeOver()){
             win = false;
             game.setScreen(new GameOverScreen(this.game));
+
         }
 
         cam.update();

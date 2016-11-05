@@ -1,0 +1,19 @@
+
+more.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+scores
+  rotate: false
+  xy: 1, 41
+  size: 400, 128
+  orig: 400, 128
+  offset: 0, 0
+  index: -1
+backBtn
+  rotate: false
+  xy: 1, 1
+  size: 51, 38
+  orig: 51, 38
+  offset: 0, 0
+  index: -1
