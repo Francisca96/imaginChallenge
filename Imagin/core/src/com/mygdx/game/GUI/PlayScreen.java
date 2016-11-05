@@ -7,6 +7,7 @@ package com.mygdx.game.GUI;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -32,6 +33,7 @@ import com.mygdx.game.Imagin;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Logic.Boy;
 import com.mygdx.game.Logic.Character;
+import com.mygdx.game.Logic.Dog;
 import com.mygdx.game.Logic.Girl;
 import com.mygdx.game.Tools.B2WorldCreator;
 import com.mygdx.game.Tools.Hud;
@@ -57,14 +59,20 @@ public class PlayScreen implements Screen {
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
 
-    private Character boy, girl;
+    private Character boy, girl, dog, baby;
 
     private World world;
-    private B2WorldCreator creator;
+    private B2WorldCreator creator1;
+   // private B2WorldCreator creator2;
 
     private Box2DDebugRenderer b2dr;
 
+    private Music music;
+
     private boolean win;
+
+    public boolean level2 = true;
+
 
     public PlayScreen(Imagin game) {
         this.game = game;
@@ -95,53 +103,111 @@ public class PlayScreen implements Screen {
             }
         });
 
+
+
         cam = new OrthographicCamera();
         menuPort = new FitViewport(Imagin.V_WIDTH, Imagin.V_HEIGHT,cam);
         hud = new Hud(game.batch);
 
         mapLoader = new TmxMapLoader();
-        map = mapLoader.load("lvl1.tmx");
+        if(level2 == false ){
+            map = mapLoader.load("lvl1.tmx");
+
+        }
+        else if(level2 == true){
+            map = mapLoader.load("level2.tmx");
+            //creator2 = new B2WorldCreator(this);
+        }
         renderer = new OrthogonalTiledMapRenderer(map, 1);
 
         cam.position.set(menuPort.getWorldWidth(), menuPort.getWorldHeight(), 0);
 
         b2dr = new Box2DDebugRenderer();
 
-        creator = new B2WorldCreator(this);
+        creator1 = new B2WorldCreator(this);
 
-        boy = new Boy(20, 596, 4, this.world);
-        boy.body.setUserData("boy");
-        girl = new Girl(490, 250, 4, this.world);
-        girl.body.setUserData("girl");
 
-         win = false;
+        if (level2 == false) {
+            boy = new Boy(30, 596, 4, this.world);
+            boy.body.setUserData("boy");
+            girl = new Girl(490, 250, 4, this.world);
+            girl.body.setUserData("girl");
+            /*dog = new Dog(240,650,3,this.world);
+            dog.body.setUserData("dog");*/
+        }
+        if(level2 == true){
+            boy = new Boy(17, 320, 4, this.world);
+            boy.body.setUserData("boy");
+            dog = new Dog(495,530,3,this.world);
+            dog.body.setUserData("dog");
+            /*girl = new Girl(490, 250, 4, this.world);
+            girl.body.setUserData("girl");*/
+
+        }
+
+        win = false;
+
+        if (game.getMusic() == true){
+            music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
+            music.setLooping(true);
+            music.setVolume(1);
+            music.play();
+        }
 
         initStage(game.batch);
     }
 
     public void handleInput(float dt) {
         if (up.isPressed()) {
-            boy.moveUp();
-            girl.moveDown();
+            if(level2 == false){
+                boy.moveUp();
+                girl.moveDown();
+            }
+
+            if(level2 == true){
+                boy.moveUp();
+
+            }
+
         }
         if (down.isPressed()) {
-            boy.moveDown();
-            girl.moveUp();
+            if(level2 == false){
+                boy.moveDown();
+                girl.moveUp();
+            }
+
+            if(level2 == true){
+                boy.moveDown();
+
+            }
         }
         if (left.isPressed()) {
-            boy.moveLeft();
-            girl.moveRight();
+
+            if(level2 == false){
+                boy.moveLeft();
+                girl.moveRight();
+            }
+            if(level2 == true){
+                boy.moveLeft();
+            }
         }
         if (right.isPressed()) {
-            boy.moveRight();
-            girl.moveLeft();
+
+            if(level2 == false){
+                boy.moveRight();
+                girl.moveLeft();
+            }
+            if(level2 == true){
+                boy.moveRight();
+
+            }
         }
 
         if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
             int cursor_x = Gdx.input.getX();
             int cursor_y = Gdx.input.getY();
-            if (cursor_x >= 100 && cursor_x < 140) {
-                if (cursor_y < 100 && cursor_y > 30) {
+            if (cursor_x >= 50 && cursor_x < 180) {
+                if (cursor_y < 270 && cursor_y > 100) {
                     game.setScreen(new MenuScreen(game));
                 }
             }
@@ -154,8 +220,18 @@ public class PlayScreen implements Screen {
 
         world.step(1/60f, 6, 2);
 
-        boy.update(dt);
-        girl.update(dt);
+
+        if (level2 == false) {
+            boy.update(dt);
+            girl.update(dt);
+        }
+
+        if(level2 == true){
+            boy.update(dt);
+            dog.update(dt);
+        }
+
+
 
         if(win == true){
             //this.dispose();
@@ -193,9 +269,16 @@ public class PlayScreen implements Screen {
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
 
         game.batch.begin();
-       // game.batch.draw(boy.getFrames(), boy.getPositionX()-8, boy.getPositionY()-8, 32, 32);
-        boy.draw(game.batch);
-        girl.draw(game.batch);
+        if(level2 == false){
+            boy.draw(game.batch);
+            girl.draw(game.batch);
+        }
+
+        if(level2 == true){
+            boy.draw(game.batch);
+            dog.draw(game.batch);
+        }
+
         game.batch.end();
 
         hud.stage.draw();
@@ -251,12 +334,31 @@ public class PlayScreen implements Screen {
 
         up.addListener(new InputListener(){
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                if(level2 == false){
+                    boy.startMoving();
+                    girl.startMoving();
+                }
+
+                if(level2 == true){
+                    boy.startMoving();
+                    dog.startMoving();
+                }
+
                 return true;
             }
 
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-               boy.animation.isMoving = false;
-                girl.animation.isMoving = false;
+                if(level2 == false){
+                    boy.animation.isMoving = false;
+                    girl.animation.isMoving = false;
+                }
+
+                if(level2 == true){
+                    boy.animation.isMoving = false;
+                    dog.animation.isMoving = false;
+                }
+
+
             }
         });
 
@@ -268,14 +370,28 @@ public class PlayScreen implements Screen {
 
         left.addListener(new InputListener(){
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                boy.startMoving();
-                girl.startMoving();
+                if(level2 == false){
+                    boy.startMoving();
+                    girl.startMoving();
+                }
+
+                if(level2 == true){
+                    boy.startMoving();
+                    dog.startMoving();
+                }
                 return true;
             }
 
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                boy.animation.isMoving = false;
-                girl.animation.isMoving = false;
+                if(level2 == false){
+                    boy.animation.isMoving = false;
+                    girl.animation.isMoving = false;
+                }
+
+                if(level2 == true){
+                    boy.animation.isMoving = false;
+                    dog.animation.isMoving = false;
+                }
             }
         });
 
@@ -287,14 +403,30 @@ public class PlayScreen implements Screen {
 
         down.addListener(new InputListener(){
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                boy.startMoving();
-                girl.startMoving();
+                if(level2 == false){
+                    boy.startMoving();
+                    girl.startMoving();
+                }
+
+                if(level2 == true){
+                    boy.startMoving();
+                    dog.startMoving();
+                }
+
+
                 return true;
             }
 
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                boy.animation.isMoving = false;
-                girl.animation.isMoving = false;
+                if(level2 == false){
+                    boy.animation.isMoving = false;
+                    girl.animation.isMoving = false;
+                }
+
+                if(level2 == true){
+                    boy.animation.isMoving = false;
+                    dog.animation.isMoving = false;
+                }
             }
         });
 
@@ -306,16 +438,29 @@ public class PlayScreen implements Screen {
 
         right.addListener(new InputListener(){
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                boy.startMoving();
-                girl.startMoving();
-                boy.startMoving();
-                girl.startMoving();
+
+                if(level2 == false){
+                    boy.startMoving();
+                    girl.startMoving();
+                }
+                if(level2 == false){
+                    boy.startMoving();
+                    dog.startMoving();
+                }
                 return true;
             }
 
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                boy.animation.isMoving = false;
-                girl.animation.isMoving = false;
+                if(level2 == false){
+                    boy.animation.isMoving = false;
+                    girl.animation.isMoving = false;
+                }
+                if(level2 == true){
+                    boy.animation.isMoving = false;
+                    dog.animation.isMoving = false;
+                }
+
+
             }
         });
 

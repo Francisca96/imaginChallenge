@@ -10,6 +10,13 @@ scores
   orig: 400, 128
   offset: 0, 0
   index: -1
+buy
+  rotate: false
+  xy: 403, 41
+  size: 254, 128
+  orig: 254, 128
+  offset: 0, 0
+  index: -1
 backBtn
   rotate: false
   xy: 1, 1

@@ -13,10 +13,13 @@ public class Imagin extends Game {
 	public static final int V_WIDTH = 512;
 	public static final int V_HEIGHT = 800;
 	public static final float PPM = 100;
+
+	public boolean music;
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
+		music = true;
 
 		setScreen(new MenuScreen(this));
 	}
@@ -25,5 +28,9 @@ public class Imagin extends Game {
 	public void render () {
 		super.render();
 
+	}
+
+	public boolean getMusic(){
+		return music;
 	}
 }

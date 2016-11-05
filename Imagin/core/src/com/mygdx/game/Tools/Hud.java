@@ -34,7 +34,7 @@ public class Hud implements Disposable{
     private Image restart;
 
     public Hud(SpriteBatch sb){
-        score = 100;
+        score = 200;
 
         hudPort = new FitViewport(Imagin.V_WIDTH, Imagin.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(hudPort,sb);
@@ -47,7 +47,7 @@ public class Hud implements Disposable{
         restart = new Image(restartTexture);
         levelLabel = new Label("Level 1", new Label.LabelStyle(new BitmapFont(), Color.BLACK));
         levelLabel.setFontScale(2);
-        scoreLabel = new Label(String.format("%03d", score), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
+        scoreLabel = new Label(String.format("%04d", score), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
         scoreLabel.setFontScale(2);
 
         table.add(restart).expandX().padTop(18); //pause button alligned with the others
