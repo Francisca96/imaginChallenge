@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -28,22 +29,27 @@ public class StoreScreen implements Screen{
     private Stage stage;
 
     private Texture blue;
+    private Texture freeze;
+    private TextureAtlas lvlMenuAtlas;
+    private Skin skin;
+    private ImageButton backBtn;
+    private ImageButton buyBtn;
 
     public StoreScreen(Imagin game) {
         this.game = game;
         this.blue = new Texture("shop_background.jpg");
+        this.freeze = new Texture("ice-cube.png");
 
         cam = new OrthographicCamera();
         cam.setToOrtho(false);
         menuPort = new FitViewport(Imagin.V_WIDTH, Imagin.V_HEIGHT,cam);
-        //world = new World(new Vector2(0, 0), true);
-        //boy = new Boy(100,250,4,world);
-        //boy.startMoving();
 
         initStage(game.batch);
     }
 
     public void handleInput(float dt) {
+
+        if (backBtn.isPressed()) game.setScreen(new MenuScreen(game));
     }
 
     public void update(float dt){
@@ -64,7 +70,7 @@ public class StoreScreen implements Screen{
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.begin();
         game.batch.draw(blue,0, 0, Imagin.V_WIDTH, Imagin.V_HEIGHT);
-        //game.batch.draw(boy.getFrames(), boy.getPositionX(), boy.getPositionY(), 64, 64);
+        game.batch.draw(freeze, Imagin.V_WIDTH / 2 - 120, Imagin.V_HEIGHT/2 -220,60,60);
         game.batch.end();
         stage.draw();
 
@@ -101,6 +107,21 @@ public class StoreScreen implements Screen{
 
     public void initStage(SpriteBatch batch) {
         this.stage = new Stage(menuPort, batch);
+
+        lvlMenuAtlas = new TextureAtlas("more.pack");
+        skin = new Skin();
+        skin.addRegions(lvlMenuAtlas);
+        stage.clear();
+
+        backBtn = new ImageButton(skin.getDrawable("backBtn"));
+        backBtn.setSize(150,150);
+        backBtn.setPosition(Imagin.V_WIDTH /2 -250,Imagin.V_HEIGHT /2 - 400);
+        stage.addActor(backBtn);
+
+        buyBtn = new ImageButton(skin.getDrawable("buy"));
+        buyBtn.setSize(110,110);
+        buyBtn.setPosition(Imagin.V_WIDTH / 2-20,Imagin.V_HEIGHT/2 -250);
+        stage.addActor(buyBtn);
 
         Gdx.input.setInputProcessor(stage);
     }
