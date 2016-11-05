@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.Animation.Animation;
+import com.mygdx.game.Imagin;
 
 /**
  * Created by Joao on 04-11-2016.
@@ -53,6 +54,11 @@ public class Girl extends Character {
         setBounds(0, 0, 32, 32);
         setRegion(getFrames());
         setPosition(body.getPosition().x - 16, body.getPosition().y - 16);
+
+        if(body.getPosition().x <= 4) body.setTransform(4,body.getPosition().y,0);
+
+        if(body.getPosition().x >= Imagin.V_WIDTH- 4)
+            body.setTransform(Imagin.V_WIDTH-4 ,body.getPosition().y,0);
     }
 
     @Override
