@@ -118,20 +118,20 @@ public class MenuScreen implements Screen{
     public void initStage(SpriteBatch batch) {
         this.stage = new Stage(menuPort, batch);
 
-        lvlMenuAtlas = new TextureAtlas("buttons_menu.pack");
+        lvlMenuAtlas = new TextureAtlas("buttons.pack");
         skin = new Skin();
         skin.addRegions(lvlMenuAtlas);
         stage.clear();
 
         //PlayButton
         playBtn = new ImageButton(skin.getDrawable("playBtn"));
-        playBtn.setSize(btn_width,btn_height);
+        playBtn.setSize(300,150);
         playBtn.setPosition(Imagin.V_WIDTH /2 - playBtn.getWidth()/2,Imagin.V_HEIGHT /2 - 20);
         stage.addActor(playBtn);
 
         //OptionsButton
         storeBtn = new ImageButton(skin.getDrawable("storeBtn"));
-        storeBtn.setSize(btn_width,btn_height);
+        storeBtn.setSize(300,150);
         storeBtn.setPosition(Imagin.V_WIDTH /2 - storeBtn.getWidth()/2, Imagin.V_HEIGHT/2 - 120);
         stage.addActor(storeBtn);
 

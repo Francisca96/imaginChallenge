@@ -17,6 +17,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Imagin;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.Tools.Hud;
 
 
 public class PlayScreen implements Screen {
@@ -25,6 +26,7 @@ public class PlayScreen implements Screen {
     private OrthographicCamera cam;
     private Viewport menuPort;
     private Stage stage;
+    private Hud hud;
 
     private Texture background;
     private TextureAtlas lvlMenuAtlas;
@@ -39,6 +41,7 @@ public class PlayScreen implements Screen {
         cam = new OrthographicCamera();
         cam.setToOrtho(false);
         menuPort = new FitViewport(Imagin.V_WIDTH, Imagin.V_HEIGHT,cam);
+        hud = new Hud(game.batch);
 
         initStage(game.batch);
     }
@@ -48,6 +51,7 @@ public class PlayScreen implements Screen {
 
     public void update(float dt){
         handleInput(dt);
+        hud.update(dt);
     }
 
     @Override
@@ -64,7 +68,9 @@ public class PlayScreen implements Screen {
         game.batch.begin();
         game.batch.draw(background,0, 0, Imagin.V_WIDTH, Imagin.V_HEIGHT);
         game.batch.end();
-        stage.draw();
+
+        game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
+        hud.stage.draw();
 
     }
 
@@ -93,6 +99,7 @@ public class PlayScreen implements Screen {
 
         game.dispose();
         background.dispose();
+        hud.dispose();
         stage.dispose();
 
     }

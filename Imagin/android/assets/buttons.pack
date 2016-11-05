@@ -1,5 +1,5 @@
 
-buttons_menu.png
+buttons.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -31,9 +31,16 @@ soundon
   orig: 128, 128
   offset: 0, 0
   index: -1
+restartBtn
+  rotate: false
+  xy: 509, 72
+  size: 51, 51
+  orig: 51, 51
+  offset: 0, 0
+  index: -1
 media-pause
   rotate: false
-  xy: 509, 91
+  xy: 769, 221
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
