@@ -163,6 +163,10 @@ public class PlayScreen implements Screen {
         }
 
         hud.update(dt);
+        if(hud.timeOver()){
+            win = false;
+            game.setScreen(new GameOverScreen(this.game));
+        }
 
         cam.update();
 
@@ -325,5 +329,7 @@ public class PlayScreen implements Screen {
     public TiledMap getMap(){
         return map;
     }
+
+
 
 }
