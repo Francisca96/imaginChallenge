@@ -52,6 +52,8 @@ public class MiniGameScreen implements Screen, InputProcessor{
     public int money;
 
 
+    private int change;
+
 
 
     public MiniGameScreen(Imagin game){
@@ -72,6 +74,7 @@ public class MiniGameScreen implements Screen, InputProcessor{
         coins = new ArrayList<Coin>();
         genCoins();
         money = 0;
+        change  = 0;
 
         Gdx.input.setInputProcessor(this);
 
@@ -100,20 +103,29 @@ public class MiniGameScreen implements Screen, InputProcessor{
     }
 
     public void update(float dt){
-
+        long endPauseTime = 0;
         handleInput(dt);
         player.update(dt);
         for(Coin c : coins){
             c.update(dt);
         }
-        if(gameCam.position.y <= 400){
+        if(gameCam.position.y <= 400) {
             gameCam.position.y = 400;
-
-
         }
         else {
             gameCam.position.y = player.getPosition().y;
         }
+
+        if(player.position.y <=58) {
+            endPauseTime = System.currentTimeMillis() + (1 * 1000);
+
+            while (System.currentTimeMillis() < endPauseTime) {
+
+            }
+            game.setScreen(new PlayScreen(game, 2));
+        }
+
+
         gameCam.update();
         renderer.setView(gameCam);
 
@@ -182,9 +194,9 @@ public class MiniGameScreen implements Screen, InputProcessor{
         if(player.position.y <=58)
             player.move = false;
         if(player.move == true) {
-            if (screenX < Imagin.V_WIDTH / 2 && screenX > 16) {
+            if (screenX < Imagin.V_WIDTH / 2) {
                 player.position.add(-20, 0);
-            } else if (screenX >= Imagin.V_WIDTH / 2 && screenX < Imagin.V_WIDTH - 16) {
+            } else if (screenX >= Imagin.V_WIDTH / 2) {
                 player.position.add(20, 0);
             }
         }

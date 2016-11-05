@@ -72,11 +72,12 @@ public class PlayScreen implements Screen {
 
     private int win = 0;
 
-    public boolean level2 = true;
+    int level;
 
 
-    public PlayScreen(Imagin game) {
+    public PlayScreen(Imagin game, int level) {
         this.game = game;
+        this.level = level;
         this.background = new Texture("blue.png");
 
         world = new World(new Vector2(0,0), true);
@@ -120,11 +121,11 @@ public class PlayScreen implements Screen {
         hud = new Hud(game.batch);
 
         mapLoader = new TmxMapLoader();
-        if(level2 == false ){
+        if(level == 1 ){
             map = mapLoader.load("lvl1.tmx");
 
         }
-        else if(level2 == true){
+        else if(level == 2){
             map = mapLoader.load("level2.tmx");
 
         }
@@ -137,14 +138,14 @@ public class PlayScreen implements Screen {
         creator1 = new B2WorldCreator(this);
 
 
-        if (level2 == false) {
+        if (level == 1) {
             boy = new Boy(30, 596, 4, this.world);
             boy.body.setUserData("boy");
             girl = new Girl(490, 250, 4, this.world);
             girl.body.setUserData("girl");
 
         }
-        if(level2 == true){
+        if(level == 2){
             boy = new Boy(17, 320, 4, this.world);
             boy.body.setUserData("boy");
             dog = new Dog(495,530,3,this.world);
@@ -169,12 +170,12 @@ public class PlayScreen implements Screen {
 
     public void handleInput(float dt) {
         if (up.isPressed()) {
-            if(level2 == false){
+            if(level == 1){
                 boy.moveUp();
                 girl.moveDown();
             }
 
-            if(level2 == true){
+            if(level == 2){
                 boy.moveUp();
                 dog.moveRight();
                 dog.moveDown();
@@ -183,12 +184,12 @@ public class PlayScreen implements Screen {
 
         }
         if (down.isPressed()) {
-            if(level2 == false){
+            if(level == 1){
                 boy.moveDown();
                 girl.moveUp();
             }
 
-            if(level2 == true){
+            if(level == 2){
                 boy.moveDown();
                 dog.moveRight();
                 dog.moveUp();
@@ -196,11 +197,11 @@ public class PlayScreen implements Screen {
         }
         if (left.isPressed()) {
 
-            if(level2 == false){
+            if(level == 1){
                 boy.moveLeft();
                 girl.moveRight();
             }
-            if(level2 == true){
+            if(level == 2){
                 boy.moveLeft();
                 dog.moveUp();
                 dog.moveLeft();
@@ -209,11 +210,11 @@ public class PlayScreen implements Screen {
         }
         if (right.isPressed()) {
 
-            if(level2 == false){
+            if(level == 1){
                 boy.moveRight();
                 girl.moveLeft();
             }
-            if(level2 == true){
+            if(level == 2){
                 boy.moveRight();
                 dog.moveDown();
                 dog.moveLeft();
@@ -239,12 +240,12 @@ public class PlayScreen implements Screen {
         world.step(1/60f, 6, 2);
 
 
-        if (level2 == false) {
+        if (level == 1) {
             boy.update(dt);
             girl.update(dt);
         }
 
-        if(level2 == true){
+        if(level == 2){
             boy.update(dt);
             dog.update(dt);
             baby.update(dt);
@@ -300,12 +301,12 @@ public class PlayScreen implements Screen {
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
 
         game.batch.begin();
-        if(level2 == false){
+        if(level == 1){
             boy.draw(game.batch);
             girl.draw(game.batch);
         }
 
-        if(level2 == true){
+        if(level == 2){
             boy.draw(game.batch);
             dog.draw(game.batch);
             baby.draw(game.batch);
@@ -366,12 +367,12 @@ public class PlayScreen implements Screen {
 
         up.addListener(new InputListener(){
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                if(level2 == false){
+                if(level == 1){
                     boy.startMoving();
                     girl.startMoving();
                 }
 
-                if(level2 == true){
+                if(level == 2){
                     boy.startMoving();
                     dog.startMoving();
                 }
@@ -380,12 +381,12 @@ public class PlayScreen implements Screen {
             }
 
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                if(level2 == false){
+                if(level == 1){
                     boy.animation.isMoving = false;
                     girl.animation.isMoving = false;
                 }
 
-                if(level2 == true){
+                if(level == 2){
                     boy.animation.isMoving = false;
                     dog.animation.isMoving = false;
                 }
@@ -402,12 +403,12 @@ public class PlayScreen implements Screen {
 
         left.addListener(new InputListener(){
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                if(level2 == false){
+                if(level == 1){
                     boy.startMoving();
                     girl.startMoving();
                 }
 
-                if(level2 == true){
+                if(level == 2){
                     boy.startMoving();
                     dog.startMoving();
                 }
@@ -415,12 +416,12 @@ public class PlayScreen implements Screen {
             }
 
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                if(level2 == false){
+                if(level == 1){
                     boy.animation.isMoving = false;
                     girl.animation.isMoving = false;
                 }
 
-                if(level2 == true){
+                if(level == 2){
                     boy.animation.isMoving = false;
                     dog.animation.isMoving = false;
                 }
@@ -435,12 +436,12 @@ public class PlayScreen implements Screen {
 
         down.addListener(new InputListener(){
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                if(level2 == false){
+                if(level == 1){
                     boy.startMoving();
                     girl.startMoving();
                 }
 
-                if(level2 == true){
+                if(level == 2){
                     boy.startMoving();
                     dog.startMoving();
                 }
@@ -450,12 +451,12 @@ public class PlayScreen implements Screen {
             }
 
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                if(level2 == false){
+                if(level == 1){
                     boy.animation.isMoving = false;
                     girl.animation.isMoving = false;
                 }
 
-                if(level2 == true){
+                if(level == 2){
                     boy.animation.isMoving = false;
                     dog.animation.isMoving = false;
                 }
@@ -471,11 +472,11 @@ public class PlayScreen implements Screen {
         right.addListener(new InputListener(){
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
 
-                if(level2 == false){
+                if(level == 1){
                     boy.startMoving();
                     girl.startMoving();
                 }
-                if(level2 == true){
+                if(level == 2){
                     boy.startMoving();
                     dog.startMoving();
                 }
@@ -483,11 +484,11 @@ public class PlayScreen implements Screen {
             }
 
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                if(level2 == false){
+                if(level == 1){
                     boy.animation.isMoving = false;
                     girl.animation.isMoving = false;
                 }
-                if(level2 == true){
+                if(level == 2){
                     boy.animation.isMoving = false;
                     dog.animation.isMoving = false;
                 }

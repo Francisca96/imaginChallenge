@@ -55,7 +55,7 @@ public class MenuScreen implements Screen{
 
     public void handleInput(float dt) {
 
-        if (playBtn.isPressed()) game.setScreen(new PlayScreen(game));
+        if (playBtn.isPressed()) game.setScreen(new PlayScreen(game,1));
         if(shopBtn.isPressed()) game.setScreen(new StoreScreen(game));
         if(scoresBtn.isPressed()) game.setScreen(new MenuScreen(game));
 
