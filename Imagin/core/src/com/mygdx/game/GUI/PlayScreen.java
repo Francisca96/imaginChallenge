@@ -41,6 +41,10 @@ public class PlayScreen implements Screen {
     private Texture background;
     private TextureAtlas lvlMenuAtlas;
     private Skin skin;
+    private ImageButton up;
+    private ImageButton down;
+    private ImageButton right;
+    private ImageButton left;
 
     private TmxMapLoader mapLoader;
     private TiledMap map;
@@ -122,6 +126,7 @@ public class PlayScreen implements Screen {
         game.batch.end();
 
         hud.stage.draw();
+        stage.draw();
 
     }
 
@@ -157,6 +162,36 @@ public class PlayScreen implements Screen {
 
     public void initStage(SpriteBatch batch) {
         this.stage = new Stage(menuPort, batch);
+
+        lvlMenuAtlas = new TextureAtlas("arrows.pack");
+        skin = new Skin();
+        skin.addRegions(lvlMenuAtlas);
+        stage.clear();
+
+        //Up
+        up = new ImageButton(skin.getDrawable("arrow-up"));
+        up.setSize(70,70);
+        up.setPosition(Imagin.V_WIDTH /2 - up.getWidth()/2 - 50,Imagin.V_HEIGHT /2 - 350);
+        stage.addActor(up);
+
+        //Left
+        left = new ImageButton(skin.getDrawable("arrow-left"));
+        left.setSize(70,70);
+        left.setPosition(Imagin.V_WIDTH /2 - left.getWidth()/2 - 160,Imagin.V_HEIGHT /2 - 350);
+        stage.addActor(left);
+
+        //Down
+        down = new ImageButton(skin.getDrawable("arrow-down"));
+        down.setSize(70,70);
+        down.setPosition(Imagin.V_WIDTH /2 - down.getWidth()/2 +50 ,Imagin.V_HEIGHT /2 - 350);
+        stage.addActor(down);
+
+        //Right
+        right = new ImageButton(skin.getDrawable("arrow-right"));
+        right.setSize(70,70);
+        right.setPosition(Imagin.V_WIDTH /2 - right.getWidth()/2 +160 ,Imagin.V_HEIGHT /2 - 350);
+        stage.addActor(right);
+
 
         Gdx.input.setInputProcessor(stage);
     }
