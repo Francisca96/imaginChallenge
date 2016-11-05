@@ -56,12 +56,14 @@ public class Boy extends Character {
     }
 
     public void moveUp(){
+        isMoving = true;
         position.add(0,5);
         texture = new Texture("04.png");
         animation = new Animation(new TextureRegion(texture), 4, 0.5f);
     }
 
     public void moveDown(){
+        isMoving = true;
         bdef.position.set(getPositionX(),getPositionY() - 5);
         position.add(0,-5);
         texture = new Texture("01.png");
@@ -69,6 +71,7 @@ public class Boy extends Character {
     }
 
     public void moveLeft(){
+        isMoving = true;
         bdef.position.set(getPositionX() + 5,getPositionY());
         position.add(-5,0);
         texture = new Texture("02.png");
@@ -76,6 +79,7 @@ public class Boy extends Character {
     }
 
     public void moveRight(){
+        isMoving = true;
         bdef.position.set(getPositionX() - 5,getPositionY());
         position.add(5,0);
         texture = new Texture("03.png");
