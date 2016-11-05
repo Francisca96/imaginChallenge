@@ -256,14 +256,17 @@ public class PlayScreen implements Screen {
         if(win == 3){
             //this.dispose();
             game.setScreen(new MiniGameScreen(this.game));
+            if(music != null) music.stop();
         }
 
         if(win == 2){
             game.setScreen(new GameOverScreen(this.game));
+            if (music != null) music.stop();
         }
 
         if(win == 1){
             game.setScreen(new MenuScreen(this.game));
+            if (music != null) music.stop();
         }
 
         /*if(win == 1){
