@@ -27,8 +27,6 @@ public class MenuScreen implements Screen{
 
     //Variables of textures
     private Texture background;
-    private Texture title;
-    private Texture guy;
     private TextureAtlas lvlMenuAtlas;
     private Skin skin;
 
