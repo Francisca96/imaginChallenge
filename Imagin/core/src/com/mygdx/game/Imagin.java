@@ -5,7 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.GUI.MenuScreen;
-import com.mygdx.game.GUI.PlayScreen;
+import com.mygdx.game.GUI.MiniGameScreen;
 
 public class Imagin extends Game {
 	public SpriteBatch batch;
@@ -17,12 +17,11 @@ public class Imagin extends Game {
 	public void create () {
 		batch = new SpriteBatch();
 
-		setScreen(new MenuScreen(this));
+		setScreen(new MiniGameScreen(this));
 	}
 
 	@Override
 	public void render () {
 		super.render();
-
 	}
 }
