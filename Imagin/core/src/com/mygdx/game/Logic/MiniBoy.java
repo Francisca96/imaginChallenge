@@ -19,59 +19,67 @@ import com.mygdx.game.Imagin;
  * Created by Francisca on 04/11/16.
  */
 public class MiniBoy extends Sprite{
-    private static final int GRAVITY = -15;
-    private Vector3 position;
-    private Vector3 velocity;
+    public static final int GRAVITY = -10;
+    public Vector3 position;
+    public Vector3 velocity;
     private Texture miniBoy;
 
 
     public World world;
-    //public MiniGameScreen screen;
     public Body b2body;
 
 
     public Rectangle boyBounds;
     public BodyDef bodydef;
 
+    public boolean move = false;
 
-    public MiniBoy(World world) {
-        this.world=world;
-        //this.screen = screen;
-        boyBounds = new Rectangle();
+    public Vector3 getPosition() {
+        return position;
+    }
 
-        miniBoy = new Texture("grass.png");
+    public MiniBoy(int x, int y) {
 
-        definePlayer();
+
+        position = new Vector3(x,y,0);
+        velocity = new Vector3(0,0,0);
+
+        miniBoy = new Texture("bush.png");
+
     }
 
     public void update(float dt) {
 
+        if(move == true) {
+            if (position.y > 0) {
+                velocity.add(0, GRAVITY, 0);
+            }
+            velocity.scl(dt);
+            position.add(0, velocity.y, 0);
 
-        setPosition(b2body.getPosition().x - 32/Imagin.PPM, b2body.getPosition().y - 32/Imagin.PPM);
 
-        if(b2body.getPosition().x <=100) b2body.setTransform(0.35f, b2body.getPosition().y,0);
-        if(b2body.getPosition().x >= Imagin.V_WIDTH/Imagin.PPM - 0.3f) b2body.setTransform(Imagin.V_WIDTH/Imagin.PPM - 0.3f, b2body.getPosition().y,0);
+            if (position.y < 58) {
+                position.y = 58;
+            }
+            velocity.scl(1 / dt);
+        }
 
-        boyBounds.setPosition(b2body.getPosition().x-32 / Imagin.PPM, b2body.getPosition().y - 32 /Imagin.PPM);
-    }
+}
 
     public void definePlayer() {
-        bodydef = new BodyDef();
-        bodydef.position.set(100 / Imagin.PPM, 32 / Imagin.PPM);
-        bodydef.type = BodyDef.BodyType.DynamicBody;
-        b2body = world.createBody(bodydef);
 
-        FixtureDef fdef = new FixtureDef();
-        PolygonShape shape = new PolygonShape();
-        shape.setAsBox(24/Imagin.PPM, 16/Imagin.PPM);
-
-        fdef.shape = shape;
-        b2body.createFixture(fdef).setUserData(this);
-        boyBounds.set(b2body.getPosition().x-32 /Imagin.PPM, b2body.getPosition().y - 32 / Imagin.PPM, 64/ Imagin.PPM, 64/Imagin.PPM);
     }
 
     public void render(SpriteBatch sb){
 
-        sb.draw(miniBoy,b2body.getPosition().x - 32 / Imagin.PPM, b2body.getPosition().y - 32 / Imagin.PPM , 64/Imagin.PPM, 64/Imagin.PPM);
+
+    }
+
+    public Vector3 getVelocity() {
+        return velocity;
+    }
+
+    public Texture getTexture(){
+        return miniBoy;
     }
 }
