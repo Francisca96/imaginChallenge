@@ -251,6 +251,7 @@ public class PlayScreen implements Screen {
         }
 
 
+<<<<<<< Updated upstream
 
         if(win == 1){
             //this.dispose();
@@ -259,6 +260,10 @@ public class PlayScreen implements Screen {
 
         if(win == 2){
             game.setScreen(new GameOverScreen(this.game));
+=======
+        if(win == true){
+            game.setScreen(new MiniGameScreen(this.game));
+>>>>>>> Stashed changes
         }
 
         hud.update(dt);

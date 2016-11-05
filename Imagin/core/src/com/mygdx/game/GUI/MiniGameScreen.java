@@ -21,6 +21,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Imagin;
 import com.mygdx.game.Logic.Coin;
 import com.mygdx.game.Logic.MiniBoy;
+import com.mygdx.game.Tools.MiniHud;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -30,6 +31,7 @@ import java.util.Random;
  */
 public class MiniGameScreen implements Screen, InputProcessor{
     private Imagin game;
+    private MiniHud minihud;
 
     private OrthographicCamera gameCam;
     private Viewport gamePort;
@@ -63,6 +65,7 @@ public class MiniGameScreen implements Screen, InputProcessor{
         gamePort = new FitViewport(480,800,gameCam);
         gameCam.position.set(240, 2000, 0);
         //gameCam.translate(240 , 2000);
+        minihud = new MiniHud(game.batch);
         mapLoader = new TmxMapLoader();
         map = mapLoader.load("miniGameBg.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
@@ -115,7 +118,8 @@ public class MiniGameScreen implements Screen, InputProcessor{
             if(coins.get(i).bounds.overlaps(player.bounds)){
                 coins.get(i).dispose();
                 coins.remove(i);
-                money += 100;
+                minihud.addCoin();
+                game.setMoney(minihud.getMoney());
             }
         }
     }
@@ -138,6 +142,8 @@ public class MiniGameScreen implements Screen, InputProcessor{
                 game.batch.draw(c.animation.getFrame(), c.getPositionX(), c.getPositionY());
         }
         game.batch.end();
+
+        minihud.stage.draw();
 
     }
 

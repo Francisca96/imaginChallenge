@@ -2,16 +2,20 @@ package com.mygdx.game.GUI;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Imagin;
@@ -34,6 +38,9 @@ public class StoreScreen implements Screen{
     private Skin skin;
     private ImageButton backBtn;
     private ImageButton buyBtn;
+
+    private static Integer money;
+    private static Label moneyLabel;
 
     public StoreScreen(Imagin game) {
         this.game = game;
@@ -122,6 +129,16 @@ public class StoreScreen implements Screen{
         buyBtn.setSize(110,110);
         buyBtn.setPosition(Imagin.V_WIDTH / 2-20,Imagin.V_HEIGHT/2 -250);
         stage.addActor(buyBtn);
+
+        Table table = new Table();
+        table.left();
+        table.setFillParent(true);
+
+        moneyLabel = new Label(String.format("%04", game.getMoney()), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        moneyLabel.setFontScale(2.3f);
+        table.add(moneyLabel).height(65).padLeft(150);
+        stage.addActor(table);
+
 
         Gdx.input.setInputProcessor(stage);
     }
