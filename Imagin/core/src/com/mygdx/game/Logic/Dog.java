@@ -38,6 +38,7 @@ public class Dog extends Character {
     @Override
     public void update(float dt) {
         handleInput();
+        animation.update(dt);
     }
 
     @Override

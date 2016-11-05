@@ -20,7 +20,6 @@ public abstract class Character extends Sprite{
     protected Vector2 position;
     protected int frames;
     protected Animation animation;
-    protected boolean isMoving;
     protected Texture texture;
     public World world;
     protected Body body;
@@ -33,7 +32,6 @@ public abstract class Character extends Sprite{
         position = new Vector2(x, y);
         this.world = world;
         this.frames = frames;
-        isMoving = false;
         defineCharacter();
         texture = new Texture("bush.png");
 

@@ -12,10 +12,14 @@ public class Animation {
     private float currentFrameTime;
     private int frameCount;
     private int frame;
+    private boolean isIncreasing;
+    public boolean isMoving;
 
 
     public Animation(TextureRegion region, int frameCount, float cycleTime){
         frames = new Array<TextureRegion>();
+        isIncreasing = true;
+        isMoving = false;
         TextureRegion temp;
         int frameWidth = region.getRegionWidth() / frameCount;
         for(int i = 0; i < frameCount; i++){
@@ -28,14 +32,21 @@ public class Animation {
     }
 
     public void update(float dt){
-        currentFrameTime += dt;
-        if (frame < frameCount){
-            if(currentFrameTime > maxFrameTime) {
+        if(isMoving == true) {
+            currentFrameTime += dt;
+            if (frame == 0)
+                isIncreasing = true;
+            else if (frame == frameCount - 1) {
+                isIncreasing = false;
+            }
+            if (currentFrameTime > maxFrameTime) {
                 currentFrameTime = 0;
-                frame++;
+                if (isIncreasing == true)
+                    frame++;
+                else
+                    frame--;
             }
         }
-        else frame = 0;
     }
 
     public TextureRegion getFrame(){

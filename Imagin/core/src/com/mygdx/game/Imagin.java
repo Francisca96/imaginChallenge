@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.GUI.MenuScreen;
 import com.mygdx.game.GUI.PlayScreen;
+import com.mygdx.game.GUI.StoreScreen;
 
 public class Imagin extends Game {
 	public SpriteBatch batch;
@@ -17,7 +18,7 @@ public class Imagin extends Game {
 	public void create () {
 		batch = new SpriteBatch();
 
-		setScreen(new MenuScreen(this));
+		setScreen(new StoreScreen(this));
 	}
 
 	@Override

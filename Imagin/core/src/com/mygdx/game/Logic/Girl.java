@@ -37,6 +37,7 @@ public class Girl extends Character {
 
     @Override
     public void update(float dt) {
+        animation.update(dt);
         handleInput();
         rectangle.setPosition(bdef.position.x - 16, bdef.position.y - 16);
     }

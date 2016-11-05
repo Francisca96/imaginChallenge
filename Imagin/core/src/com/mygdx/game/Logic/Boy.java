@@ -12,7 +12,7 @@ import com.mygdx.game.Animation.Animation;
 public class Boy extends Character {
     public Boy(float x, float y, int frames, World world){
         super(x, y, frames, world);
-        texture = new Texture("03.png");
+        texture = new Texture("01.png");
         animation = new Animation(new TextureRegion(texture), frames, 0.5f);
     }
 
@@ -40,6 +40,7 @@ public class Boy extends Character {
     @Override
     public void update(float dt) {
         handleInput();
+        animation.update(dt);
         rectangle.setPosition(bdef.position.x-16,bdef.position.y-16);
         body.setTransform(position, 0);
 
@@ -56,34 +57,34 @@ public class Boy extends Character {
     }
 
     public void moveUp(){
-        isMoving = true;
         position.add(0,5);
         texture = new Texture("04.png");
         animation = new Animation(new TextureRegion(texture), 4, 0.5f);
+        animation.isMoving = true;
     }
 
     public void moveDown(){
-        isMoving = true;
         bdef.position.set(getPositionX(),getPositionY() - 5);
         position.add(0,-5);
         texture = new Texture("01.png");
         animation = new Animation(new TextureRegion(texture), 4, 0.5f);
+        animation.isMoving = true;
     }
 
     public void moveLeft(){
-        isMoving = true;
         bdef.position.set(getPositionX() + 5,getPositionY());
         position.add(-5,0);
         texture = new Texture("02.png");
         animation = new Animation(new TextureRegion(texture), 4, 0.5f);
+        animation.isMoving = true;
     }
 
     public void moveRight(){
-        isMoving = true;
         bdef.position.set(getPositionX() - 5,getPositionY());
         position.add(5,0);
         texture = new Texture("03.png");
         animation = new Animation(new TextureRegion(texture), 4, 0.5f);
+        animation.isMoving = true;
     }
 
 
