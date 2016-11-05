@@ -37,6 +37,7 @@ public class MenuScreen implements Screen{
     private ImageButton playBtn;
     private ImageButton shopBtn;
     private ImageButton scoresBtn;
+    private ImageButton soundBtn;
 
     public MenuScreen(Imagin game){
         this.game = game;
@@ -136,6 +137,10 @@ public class MenuScreen implements Screen{
         scoresBtn.setPosition(Imagin.V_WIDTH /2 - playBtn.getWidth()/2,Imagin.V_HEIGHT /2 - 330);
         stage.addActor(scoresBtn);
 
+        soundBtn = new ImageButton(skin.getDrawable("soundon"), skin.getDrawable("soundoff"), skin.getDrawable("soundoff"));
+        soundBtn.setSize(60, 60);
+        soundBtn.setPosition(Imagin.V_WIDTH / 2 - soundBtn.getWidth() / 2 - 180, Imagin.V_HEIGHT / 2 -300);
+        stage.addActor(soundBtn);
 
 
         Gdx.input.setInputProcessor(stage);
