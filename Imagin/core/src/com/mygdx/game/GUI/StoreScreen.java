@@ -27,26 +27,24 @@ public class StoreScreen implements Screen{
     private Viewport menuPort;
     private Stage stage;
 
-    private Texture background;
-    private Texture title;
-    private TextureAtlas lvlMenuAtlas;
-    private Skin skin;
-    private Character boy;
-    private World world;
+    private Texture blue;
+    //private TextureAtlas lvlMenuAtlas;
+    //private Skin skin;
+    //private Character boy;
+   // private World world;
 
 
 
     public StoreScreen(Imagin game) {
         this.game = game;
-        this.background = new Texture("background.jpg");
-        this.title = new Texture("store_title.PNG");
+        this.blue = new Texture("blue.png");
 
         cam = new OrthographicCamera();
         cam.setToOrtho(false);
         menuPort = new FitViewport(Imagin.V_WIDTH, Imagin.V_HEIGHT,cam);
-        world = new World(new Vector2(0, 0), true);
-        boy = new Boy(100,250,4,world);
-        boy.startMoving();
+        //world = new World(new Vector2(0, 0), true);
+        //boy = new Boy(100,250,4,world);
+        //boy.startMoving();
 
         initStage(game.batch);
     }
@@ -56,7 +54,7 @@ public class StoreScreen implements Screen{
 
     public void update(float dt){
         handleInput(dt);
-        boy.update(dt);
+        //boy.update(dt);
     }
 
     @Override
@@ -71,9 +69,8 @@ public class StoreScreen implements Screen{
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.begin();
-        game.batch.draw(background,0, 0, Imagin.V_WIDTH, Imagin.V_HEIGHT);
-        game.batch.draw(title,Imagin.V_WIDTH/2 - title.getWidth()/2, Imagin.V_HEIGHT/2-title.getHeight()/2);
-        game.batch.draw(boy.getFrames(), boy.getPositionX(), boy.getPositionY(), 64, 64);
+        game.batch.draw(blue,0, 0, Imagin.V_WIDTH, Imagin.V_HEIGHT);
+        //game.batch.draw(boy.getFrames(), boy.getPositionX(), boy.getPositionY(), 64, 64);
         game.batch.end();
         stage.draw();
 
@@ -103,8 +100,7 @@ public class StoreScreen implements Screen{
     public void dispose() {
 
         game.dispose();
-        background.dispose();
-        title.dispose();
+        blue.dispose();
         stage.dispose();
 
     }

@@ -32,24 +32,14 @@ public class MenuScreen implements Screen{
     private TextureAtlas lvlMenuAtlas;
     private Skin skin;
 
-    public static int title_width = Imagin.V_WIDTH - 100;
-    public static int title_height = 100;
-    public static int guy_width = 270;
-    public static int guy_height = 270;
-    public static int btn_width = 400;
-    public static int btn_height = 200;
-
 
     //Inicializar botoes
     private ImageButton playBtn;
-    private ImageButton storeBtn;
-    private ImageButton soundBtn;
+    private ImageButton shopBtn;
 
     public MenuScreen(Imagin game){
         this.game = game;
         this.background = new Texture("background.jpg");
-        this.title = new Texture("title1.png");
-        this.guy = new Texture("guymenu.png");
 
         cam = new OrthographicCamera();
         cam.setToOrtho(false);
@@ -61,6 +51,7 @@ public class MenuScreen implements Screen{
     public void handleInput(float dt) {
 
         if (playBtn.isPressed()) game.setScreen(new PlayScreen(game));
+        if(shopBtn.isPressed()) game.setScreen(new StoreScreen(game));
 
     }
 
@@ -80,8 +71,6 @@ public class MenuScreen implements Screen{
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.begin();
         game.batch.draw(background,0, 0, Imagin.V_WIDTH, Imagin.V_HEIGHT);
-        game.batch.draw(title,Imagin.V_WIDTH / 2 - title_width /2, Imagin.V_HEIGHT / 2 + 200, title_width, title_height);
-        game.batch.draw(guy, Imagin.V_WIDTH/2 - guy_width/2+90, Imagin.V_HEIGHT/2-400, guy_width, guy_height);
         game.batch.end();
         stage.draw();
     }
@@ -118,27 +107,22 @@ public class MenuScreen implements Screen{
     public void initStage(SpriteBatch batch) {
         this.stage = new Stage(menuPort, batch);
 
-        lvlMenuAtlas = new TextureAtlas("buttons.pack");
+        lvlMenuAtlas = new TextureAtlas("buttons_menu.pack");
         skin = new Skin();
         skin.addRegions(lvlMenuAtlas);
         stage.clear();
 
         //PlayButton
-        playBtn = new ImageButton(skin.getDrawable("playBtn"));
-        playBtn.setSize(300,150);
-        playBtn.setPosition(Imagin.V_WIDTH /2 - playBtn.getWidth()/2,Imagin.V_HEIGHT /2 - 20);
+        playBtn = new ImageButton(skin.getDrawable("play"));
+        playBtn.setSize(playBtn.getWidth(),playBtn.getHeight());
+        playBtn.setPosition(Imagin.V_WIDTH /2 - playBtn.getWidth()/2,Imagin.V_HEIGHT /2 - 170);
         stage.addActor(playBtn);
 
-        //OptionsButton
-        storeBtn = new ImageButton(skin.getDrawable("storeBtn"));
-        storeBtn.setSize(300,150);
-        storeBtn.setPosition(Imagin.V_WIDTH /2 - storeBtn.getWidth()/2, Imagin.V_HEIGHT/2 - 120);
-        stage.addActor(storeBtn);
-
-        soundBtn = new ImageButton(skin.getDrawable("soundon"));
-        soundBtn.setSize(80,80);
-        soundBtn.setPosition(Imagin.V_WIDTH /2 - soundBtn.getWidth()/2-130, Imagin.V_HEIGHT/2 - 310);
-        stage.addActor(soundBtn);
+        //ShopButton
+        shopBtn = new ImageButton(skin.getDrawable("shop"));
+        shopBtn.setSize(shopBtn.getWidth(),shopBtn.getHeight());
+        shopBtn.setPosition(Imagin.V_WIDTH /2 - shopBtn.getWidth()/2, Imagin.V_HEIGHT/2 - 250);
+        stage.addActor(shopBtn);
 
         Gdx.input.setInputProcessor(stage);
     }
