@@ -85,7 +85,7 @@ public class PlayScreen implements Screen {
             @Override
             public void beginContact(Contact contact) {
                 if (contact.getFixtureA().getBody().getUserData() =="boy" && contact.getFixtureB().getBody().getUserData()=="girl")
-                    win = 1;
+                    win = 3;
 
                else if(contact.getFixtureA().getBody().getUserData()=="boy" && contact.getFixtureB().getBody().getUserData() == "dog")
                     win = 2;
@@ -251,20 +251,19 @@ public class PlayScreen implements Screen {
         }
 
 
-<<<<<<< Updated upstream
 
-        if(win == 1){
+        if(win == 3){
             //this.dispose();
             game.setScreen(new MiniGameScreen(this.game));
         }
 
         if(win == 2){
             game.setScreen(new GameOverScreen(this.game));
-=======
-        if(win == true){
-            game.setScreen(new MiniGameScreen(this.game));
->>>>>>> Stashed changes
         }
+
+        /*if(win == 1){
+            game.setScreen(new );
+        }*/
 
         hud.update(dt);
         if(hud.timeOver()){
