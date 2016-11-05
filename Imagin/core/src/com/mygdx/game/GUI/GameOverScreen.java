@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -26,12 +27,13 @@ public class GameOverScreen implements Screen{
     private Texture background;
     private TextureAtlas lvlMenuAtlas;
     private Skin skin;
+    private ImageButton backBtn;
 
 
 
     public GameOverScreen(Imagin game) {
         this.game = game;
-        this.background = new Texture("background.jpg");
+        this.background = new Texture("sleepAlone.jpg");
 
         cam = new OrthographicCamera();
         cam.setToOrtho(false);
@@ -41,6 +43,8 @@ public class GameOverScreen implements Screen{
     }
 
     public void handleInput(float dt) {
+
+        if (backBtn.isPressed()) game.setScreen(new MenuScreen(game));
     }
 
     public void update(float dt){
@@ -96,6 +100,16 @@ public class GameOverScreen implements Screen{
 
     public void initStage(SpriteBatch batch) {
         this.stage = new Stage(menuPort, batch);
+
+        lvlMenuAtlas = new TextureAtlas("more.pack");
+        skin = new Skin();
+        skin.addRegions(lvlMenuAtlas);
+        stage.clear();
+
+        backBtn = new ImageButton(skin.getDrawable("backBtn"));
+        backBtn.setSize(150,150);
+        backBtn.setPosition(Imagin.V_WIDTH /2 - backBtn.getWidth()/2 - 180,Imagin.V_HEIGHT /2 - 380);
+        stage.addActor(backBtn);
 
         Gdx.input.setInputProcessor(stage);
     }
