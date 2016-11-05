@@ -5,6 +5,7 @@ package com.mygdx.game.GUI;
  */
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -83,8 +84,15 @@ public class PlayScreen implements Screen {
     }
 
     public void handleInput(float dt) {
-        if(Gdx.input.isTouched()){
-            boy.moveDown();
+
+        if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+            int cursor_x = Gdx.input.getX();
+            int cursor_y = Gdx.input.getY();
+            if (cursor_x >= 100 && cursor_x < 140) {
+                if (cursor_y < 100 && cursor_y > 30) {
+                    game.setScreen(new MenuScreen(game));
+                }
+            }
         }
     }
 
