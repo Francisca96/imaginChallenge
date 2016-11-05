@@ -1,6 +1,7 @@
 package com.mygdx.game.Logic;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.World;
 
@@ -25,8 +26,8 @@ public class Dog extends Character {
     }
 
     @Override
-    public Texture getTexture() {
-        return texture;
+    public TextureRegion getFrames() {
+        return animation.getFrame();
     }
 
     @Override
@@ -51,7 +52,7 @@ public class Dog extends Character {
 
     @Override
     public void moveDown() {
-        
+
     }
 
     @Override
