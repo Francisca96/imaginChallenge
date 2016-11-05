@@ -140,8 +140,8 @@ public class PlayScreen implements Screen {
         if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
             int cursor_x = Gdx.input.getX();
             int cursor_y = Gdx.input.getY();
-            if (cursor_x >= 100 && cursor_x < 140) {
-                if (cursor_y < 100 && cursor_y > 30) {
+            if (cursor_x >= 50 && cursor_x < 180) {
+                if (cursor_y < 270 && cursor_y > 100) {
                     game.setScreen(new MenuScreen(game));
                 }
             }
