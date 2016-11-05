@@ -1,8 +1,8 @@
 package com.mygdx.game.Logic;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.World;
 
 /**
@@ -26,8 +26,8 @@ public class Girl extends Character {
     }
 
     @Override
-    public Texture getTexture() {
-        return texture;
+    public TextureRegion getFrames() {
+        return animation.getFrame();
     }
 
     @Override
@@ -37,6 +37,7 @@ public class Girl extends Character {
 
     @Override
     public void update(float dt) {
+        animation.update(dt);
         handleInput();
         rectangle.setPosition(bdef.position.x - 16, bdef.position.y - 16);
     }
@@ -69,5 +70,9 @@ public class Girl extends Character {
     public void moveLeft(){
         bdef.position.set(getPositionX() - 5, getPositionY());
         position.add(-5,0);
+    }
+
+    public void startMoving(){
+        animation.isMoving = true;
     }
 }
