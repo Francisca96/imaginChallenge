@@ -1,6 +1,7 @@
 package com.mygdx.game.Logic;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
@@ -8,6 +9,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
@@ -23,7 +26,7 @@ public abstract class Character extends Sprite{
     protected Texture texture;
     public World world;
     protected Body body;
-    protected BodyDef bdef;
+    public BodyDef bdef;
     public Rectangle rectangle;
     public Box2DDebugRenderer b2d;
 
@@ -46,13 +49,14 @@ public abstract class Character extends Sprite{
         body = world.createBody(bdef);
 
         FixtureDef fdef = new FixtureDef();
-        PolygonShape shape = new PolygonShape();
+        CircleShape shape = new CircleShape();
+        shape.setRadius(14);
         fdef.shape = shape;
-        shape.setAsBox(16,16);
+        //shape.setAsBox(16,16);
 
-        body.createFixture(fdef).setUserData(this);
+        body.createFixture(fdef);
 
-        rectangle = new Rectangle(0,0,32,32);
+       // rectangle = new Rectangle(0,0,32,32);
        // rectangle.set(body.getPosition().x -16, body.getPosition().y -16,32,32);
     }
 
@@ -68,4 +72,8 @@ public abstract class Character extends Sprite{
     public abstract void moveRight();
     public abstract void moveLeft();
     public abstract void startMoving();
+
+    public void draw(Batch batch){
+        super.draw(batch);
+    }
 }

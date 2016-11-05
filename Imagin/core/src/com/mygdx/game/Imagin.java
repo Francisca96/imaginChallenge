@@ -10,7 +10,7 @@ import com.mygdx.game.GUI.StoreScreen;
 
 public class Imagin extends Game {
 	public SpriteBatch batch;
-	public static final int V_WIDTH = 480;
+	public static final int V_WIDTH = 512;
 	public static final int V_HEIGHT = 800;
 	public static final float PPM = 100;
 	
@@ -18,7 +18,7 @@ public class Imagin extends Game {
 	public void create () {
 		batch = new SpriteBatch();
 
-		setScreen(new StoreScreen(this));
+		setScreen(new PlayScreen(this));
 	}
 
 	@Override
