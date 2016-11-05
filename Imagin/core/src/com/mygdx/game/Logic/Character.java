@@ -22,10 +22,10 @@ import com.mygdx.game.Animation.Animation;
 public abstract class Character extends Sprite{
     protected Vector2 position;
     protected int frames;
-    protected Animation animation;
+    public Animation animation;
     protected Texture texture;
     public World world;
-    protected Body body;
+    public Body body;
     public BodyDef bdef;
     public Rectangle rectangle;
     public Box2DDebugRenderer b2d;
@@ -56,8 +56,8 @@ public abstract class Character extends Sprite{
 
         body.createFixture(fdef);
 
-       // rectangle = new Rectangle(0,0,32,32);
-       // rectangle.set(body.getPosition().x -16, body.getPosition().y -16,32,32);
+        rectangle = new Rectangle(0,0,32,32);
+        rectangle.set(body.getPosition().x -16, body.getPosition().y -16,32,32);
     }
 
     public abstract float getPositionX();

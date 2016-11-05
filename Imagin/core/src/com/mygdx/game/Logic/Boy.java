@@ -17,6 +17,7 @@ public class Boy extends Character {
         super(x, y, frames, world);
         texture = new Texture("01.png");
         animation = new Animation(new TextureRegion(texture), frames, 0.5f);
+        animation.isMoving = true;
         setRegion(getFrames());
     }
 
@@ -50,8 +51,6 @@ public class Boy extends Character {
     public void update(float dt) {
         handleInput();
         animation.update(dt);
-       /* body.setTransform(bdef.position.x+8, bdef.position.y + 8, 0);
-        rectangle.setPosition(bdef.position.x+8,bdef.position.y+8);*/
         setBounds(0, 0, 32, 32);
         setRegion(getFrames());
         setPosition(body.getPosition().x - 16, body.getPosition().y - 16);
@@ -68,44 +67,57 @@ public class Boy extends Character {
     }
 
     public void moveUp(){
-        body.setTransform(body.getPosition().x, body.getPosition().y+3f, 0);
+       // body.setTransform(body.getPosition().x, body.getPosition().y+3f, 0);
         //bdef.position.add(0, 5);
         //position.add(0,5);
         texture = new Texture("04.png");
         animation = new Animation(new TextureRegion(texture), 4, 0.5f);
 
         animation.isMoving = true;
+
+        body.setLinearVelocity(0,0.0000001f);
+        body.setTransform(body.getPosition().x, body.getPosition().y+3f, 0);
     }
 
     public void moveDown(){
-        //body.applyLinearImpulse(new Vector2(3f,0), body.getWorldCenter(), true);
-        body.setTransform(body.getPosition().x, body.getPosition().y-3f, 0);
+       // body.applyLinearImpulse(new Vector2(0,-2f), body.getWorldCenter(), true);
+        //body.applyForceToCenter(0,-5,true);
+
         //position.add(0,-5);
-        Gdx.app.log("" + bdef.position.y, "");
         texture = new Texture("01.png");
         animation = new Animation(new TextureRegion(texture), 4, 0.5f);
 
         animation.isMoving = true;
+
+        body.setLinearVelocity(0,-0.0000001f);
+        body.setTransform(body.getPosition().x, body.getPosition().y-3f, 0);
     }
 
     public void moveLeft(){
+       // body.applyLinearImpulse(new Vector2(-2f,0), body.getWorldCenter(), true);
         //bdef.position.set(getPositionX() - 5,getPositionY());
-        body.setTransform(body.getPosition().x-3f, body.getPosition().y, 0);
+        //body.setTransform(body.getPosition().x-3f, body.getPosition().y, 0);
         //position.add(-5,0);
         texture = new Texture("02.png");
         animation = new Animation(new TextureRegion(texture), 4, 0.5f);
 
         animation.isMoving = true;
+
+        body.setLinearVelocity(-0.0000001f, 0);
+        body.setTransform(body.getPosition().x - 3f, body.getPosition().y, 0);
     }
 
     public void moveRight(){
        // bdef.position.set(getPositionX() + 5,getPositionY());
-        body.setTransform(body.getPosition().x+3f, body.getPosition().y, 0);
+        //body.applyLinearImpulse(new Vector2(2f,0), body.getWorldCenter(), true);
         //position.add(5,0);
         texture = new Texture("03.png");
         animation = new Animation(new TextureRegion(texture), 4, 0.5f);
 
         animation.isMoving = true;
+
+        body.setLinearVelocity(0.0000001f, 0);
+        body.setTransform(body.getPosition().x + 3f, body.getPosition().y, 0);
     }
 
     public void startMoving(){
