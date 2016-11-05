@@ -36,9 +36,6 @@ public abstract class Character extends Sprite{
         this.world = world;
         this.frames = frames;
         defineCharacter();
-        texture = new Texture("bush.png");
-
-        //animation = new Animation(new TextureRegion(texture), frames, 0.5f);
     }
 
     public void defineCharacter(){
