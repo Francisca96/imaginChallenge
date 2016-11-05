@@ -263,7 +263,7 @@ public class PlayScreen implements Screen {
         }
 
         if(win == 1){
-            game.setScreen(new MenuScreen(this.game));
+            game.setScreen(new WinScreen(this.game));
         }
 
         /*if(win == 1){

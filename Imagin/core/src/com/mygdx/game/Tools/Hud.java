@@ -34,7 +34,7 @@ public class Hud implements Disposable{
     private Image restart;
 
     public Hud(SpriteBatch sb){
-        score = 200;
+        score = 25;
 
         hudPort = new FitViewport(Imagin.V_WIDTH, Imagin.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(hudPort,sb);
