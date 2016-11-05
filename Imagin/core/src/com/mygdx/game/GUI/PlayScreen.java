@@ -179,7 +179,7 @@ public class PlayScreen implements Screen {
         //Up
         up = new ImageButton(skin.getDrawable("arrow-up"));
         up.setSize(70,70);
-        up.setPosition(Imagin.V_WIDTH /2 - up.getWidth()/2 - 50,Imagin.V_HEIGHT /2 - 350);
+        up.setPosition(Imagin.V_WIDTH /2 - up.getWidth()/2  +80,Imagin.V_HEIGHT /2 - 350);
         stage.addActor(up);
 
         //Left
@@ -191,13 +191,13 @@ public class PlayScreen implements Screen {
         //Down
         down = new ImageButton(skin.getDrawable("arrow-down"));
         down.setSize(70,70);
-        down.setPosition(Imagin.V_WIDTH /2 - down.getWidth()/2 +50 ,Imagin.V_HEIGHT /2 - 350);
+        down.setPosition(Imagin.V_WIDTH /2 - down.getWidth()/2 +170 ,Imagin.V_HEIGHT /2 - 350);
         stage.addActor(down);
 
         //Right
         right = new ImageButton(skin.getDrawable("arrow-right"));
         right.setSize(70,70);
-        right.setPosition(Imagin.V_WIDTH /2 - right.getWidth()/2 +160 ,Imagin.V_HEIGHT /2 - 350);
+        right.setPosition(Imagin.V_WIDTH /2 - right.getWidth()/2 -50 ,Imagin.V_HEIGHT /2 - 350);
         stage.addActor(right);
 
 

@@ -28,12 +28,6 @@ public class StoreScreen implements Screen{
     private Stage stage;
 
     private Texture blue;
-    //private TextureAtlas lvlMenuAtlas;
-    //private Skin skin;
-    //private Character boy;
-   // private World world;
-
-
 
     public StoreScreen(Imagin game) {
         this.game = game;
