@@ -47,7 +47,7 @@ public class MiniGameScreen implements Screen, InputProcessor{
     private World world;
 
     private Box2DDebugRenderer b2dr;
-    private int money;
+    public int money;
 
 
 

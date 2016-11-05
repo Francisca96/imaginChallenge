@@ -31,6 +31,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Imagin;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.Logic.Baby;
 import com.mygdx.game.Logic.Boy;
 import com.mygdx.game.Logic.Character;
 import com.mygdx.game.Logic.Dog;
@@ -63,13 +64,13 @@ public class PlayScreen implements Screen {
 
     private World world;
     private B2WorldCreator creator1;
-   // private B2WorldCreator creator2;
 
-    private Box2DDebugRenderer b2dr;
+
+  //  private Box2DDebugRenderer b2dr;
 
     private Music music;
 
-    private boolean win;
+    private int win = 0;
 
     public boolean level2 = true;
 
@@ -84,7 +85,16 @@ public class PlayScreen implements Screen {
             @Override
             public void beginContact(Contact contact) {
                 if (contact.getFixtureA().getBody().getUserData() =="boy" && contact.getFixtureB().getBody().getUserData()=="girl")
-                win = true;
+                    win = 1;
+
+                if(contact.getFixtureA().getBody().getUserData()=="boy" && contact.getFixtureB().getBody().getUserData() == "dog")
+                    win = 2;
+
+                if(contact.getFixtureA().getBody().getUserData()=="boy" && contact.getFixtureB().getBody().getUserData() == "baby")
+                    win = 1;
+
+                if(contact.getFixtureA().getBody().getUserData()=="baby" && contact.getFixtureB().getBody().getUserData() == "dog")
+                    win = 2;
             }
 
             @Override
@@ -116,13 +126,13 @@ public class PlayScreen implements Screen {
         }
         else if(level2 == true){
             map = mapLoader.load("level2.tmx");
-            //creator2 = new B2WorldCreator(this);
+
         }
         renderer = new OrthogonalTiledMapRenderer(map, 1);
 
         cam.position.set(menuPort.getWorldWidth(), menuPort.getWorldHeight(), 0);
 
-        b2dr = new Box2DDebugRenderer();
+        //b2dr = new Box2DDebugRenderer();
 
         creator1 = new B2WorldCreator(this);
 
@@ -132,20 +142,20 @@ public class PlayScreen implements Screen {
             boy.body.setUserData("boy");
             girl = new Girl(490, 250, 4, this.world);
             girl.body.setUserData("girl");
-            /*dog = new Dog(240,650,3,this.world);
-            dog.body.setUserData("dog");*/
+
         }
         if(level2 == true){
             boy = new Boy(17, 320, 4, this.world);
             boy.body.setUserData("boy");
             dog = new Dog(495,530,3,this.world);
             dog.body.setUserData("dog");
-            /*girl = new Girl(490, 250, 4, this.world);
-            girl.body.setUserData("girl");*/
+            baby = new Baby(350,600,6,this.world);
+            baby.body.setUserData("baby");
+
 
         }
 
-        win = false;
+
 
         if (game.getMusic() == true){
             music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
@@ -166,6 +176,8 @@ public class PlayScreen implements Screen {
 
             if(level2 == true){
                 boy.moveUp();
+                dog.moveRight();
+                dog.moveDown();
 
             }
 
@@ -178,7 +190,8 @@ public class PlayScreen implements Screen {
 
             if(level2 == true){
                 boy.moveDown();
-
+                dog.moveRight();
+                dog.moveUp();
             }
         }
         if (left.isPressed()) {
@@ -189,6 +202,9 @@ public class PlayScreen implements Screen {
             }
             if(level2 == true){
                 boy.moveLeft();
+                dog.moveUp();
+                dog.moveLeft();
+
             }
         }
         if (right.isPressed()) {
@@ -199,6 +215,8 @@ public class PlayScreen implements Screen {
             }
             if(level2 == true){
                 boy.moveRight();
+                dog.moveDown();
+                dog.moveLeft();
 
             }
         }
@@ -229,18 +247,23 @@ public class PlayScreen implements Screen {
         if(level2 == true){
             boy.update(dt);
             dog.update(dt);
+            baby.update(dt);
         }
 
 
 
-        if(win == true){
+        if(win == 1){
             //this.dispose();
-            game.setScreen(new MenuScreen(this.game));
+            game.setScreen(new MiniGameScreen(this.game));
+        }
+
+        if(win == 2){
+            game.setScreen(new GameOverScreen(this.game));
         }
 
         hud.update(dt);
         if(hud.timeOver()){
-            win = false;
+            win = 2;
             game.setScreen(new GameOverScreen(this.game));
 
         }
@@ -264,7 +287,7 @@ public class PlayScreen implements Screen {
 
         renderer.render();
 
-        b2dr.render(world, cam.combined);
+        //b2dr.render(world, cam.combined);
 
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
 
@@ -277,6 +300,7 @@ public class PlayScreen implements Screen {
         if(level2 == true){
             boy.draw(game.batch);
             dog.draw(game.batch);
+            baby.draw(game.batch);
         }
 
         game.batch.end();

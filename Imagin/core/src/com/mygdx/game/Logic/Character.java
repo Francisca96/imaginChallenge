@@ -70,6 +70,7 @@ public abstract class Character extends Sprite{
     public abstract void moveLeft();
     public abstract void startMoving();
 
+
     public void draw(Batch batch){
         super.draw(batch);
     }

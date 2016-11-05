@@ -89,4 +89,8 @@ public class MiniBoy extends Sprite{
     public Texture getTexture(){
         return miniBoy;
     }
+    public void moveRandom(){
+
+
+    }
 }

@@ -130,4 +130,6 @@ public class Boy extends Character {
         animation.isMoving = true;
     }
 
+
+
 }

@@ -8,6 +8,8 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.Animation.Animation;
 import com.mygdx.game.Imagin;
 
+import java.util.Random;
+
 /**
  * Created by Joao on 04-11-2016.
  */
@@ -55,6 +57,7 @@ public class Dog extends Character {
         setRegion(getFrames());
         setPosition(body.getPosition().x - 16, body.getPosition().y - 16);
 
+
         if(body.getPosition().x <= 4) body.setTransform(4,body.getPosition().y,0);
 
         if(body.getPosition().x >= Imagin.V_WIDTH- 4)
@@ -76,12 +79,12 @@ public class Dog extends Character {
         //bdef.position.add(0, 5);
         //position.add(0,5);
         texture = new Texture("74.png");
-        animation = new Animation(new TextureRegion(texture), 4, 0.5f);
+        animation = new Animation(new TextureRegion(texture), 3, 0.5f);
 
         animation.isMoving = true;
 
         body.setLinearVelocity(0,0.0000001f);
-        body.setTransform(body.getPosition().x, body.getPosition().y+3f, 0);
+        body.setTransform(body.getPosition().x, body.getPosition().y+2f, 0);
     }
 
     public void moveDown(){
@@ -90,12 +93,12 @@ public class Dog extends Character {
 
         //position.add(0,-5);
         texture = new Texture("71.png");
-        animation = new Animation(new TextureRegion(texture), 4, 0.5f);
+        animation = new Animation(new TextureRegion(texture), 3, 0.5f);
 
         animation.isMoving = true;
 
         body.setLinearVelocity(0,-0.0000001f);
-        body.setTransform(body.getPosition().x, body.getPosition().y-3f, 0);
+        body.setTransform(body.getPosition().x, body.getPosition().y-2f, 0);
     }
 
     public void moveLeft(){
@@ -104,12 +107,12 @@ public class Dog extends Character {
         //body.setTransform(body.getPosition().x-3f, body.getPosition().y, 0);
         //position.add(-5,0);
         texture = new Texture("72.png");
-        animation = new Animation(new TextureRegion(texture), 4, 0.5f);
+        animation = new Animation(new TextureRegion(texture), 3, 0.5f);
 
         animation.isMoving = true;
 
         body.setLinearVelocity(-0.0000001f, 0);
-        body.setTransform(body.getPosition().x - 3f, body.getPosition().y, 0);
+        body.setTransform(body.getPosition().x - 2f, body.getPosition().y, 0);
     }
 
     public void moveRight(){
@@ -117,16 +120,18 @@ public class Dog extends Character {
         //body.applyLinearImpulse(new Vector2(2f,0), body.getWorldCenter(), true);
         //position.add(5,0);
         texture = new Texture("73.png");
-        animation = new Animation(new TextureRegion(texture), 4, 0.5f);
+        animation = new Animation(new TextureRegion(texture), 3, 0.5f);
 
         animation.isMoving = true;
 
         body.setLinearVelocity(0.0000001f, 0);
-        body.setTransform(body.getPosition().x + 3f, body.getPosition().y, 0);
+        body.setTransform(body.getPosition().x + 2f, body.getPosition().y, 0);
     }
 
     public void startMoving(){
         animation.isMoving = true;
     }
+
+
 
 }

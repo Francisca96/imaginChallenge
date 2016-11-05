@@ -69,7 +69,7 @@ public class Baby extends Character {
         //bdef.position.add(0, 5);
         //position.add(0,5);
         texture = new Texture("baby1.png");
-        animation = new Animation(new TextureRegion(texture), 4, 0.5f);
+        animation = new Animation(new TextureRegion(texture), 6, 0.5f);
 
         animation.isMoving = true;
 
@@ -83,7 +83,7 @@ public class Baby extends Character {
 
         //position.add(0,-5);
         texture = new Texture("baby3.png");
-        animation = new Animation(new TextureRegion(texture), 4, 0.5f);
+        animation = new Animation(new TextureRegion(texture), 6, 0.5f);
 
         animation.isMoving = true;
 
@@ -97,7 +97,7 @@ public class Baby extends Character {
         //body.setTransform(body.getPosition().x-3f, body.getPosition().y, 0);
         //position.add(-5,0);
         texture = new Texture("baby4.png");
-        animation = new Animation(new TextureRegion(texture), 4, 0.5f);
+        animation = new Animation(new TextureRegion(texture), 6, 0.5f);
 
         animation.isMoving = true;
 
@@ -110,7 +110,7 @@ public class Baby extends Character {
         //body.applyLinearImpulse(new Vector2(2f,0), body.getWorldCenter(), true);
         //position.add(5,0);
         texture = new Texture("baby2.png");
-        animation = new Animation(new TextureRegion(texture), 4, 0.5f);
+        animation = new Animation(new TextureRegion(texture), 6, 0.5f);
 
         animation.isMoving = true;
 
@@ -121,5 +121,6 @@ public class Baby extends Character {
     public void startMoving(){
         animation.isMoving = true;
     }
+
 
 }
