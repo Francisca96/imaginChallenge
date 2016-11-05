@@ -24,16 +24,17 @@ public class Hud implements Disposable{
     public Viewport hudPort;
 
     private float timeCount;
+    private Integer score;
 
     private Label restartLabel;
     private static Label levelLabel;
-    private static Label timerLabel;
+    private static Label scoreLabel;
 
     private Texture restartTexture;
     private Image restart;
 
     public Hud(SpriteBatch sb){
-        timeCount =0;
+        score = 150;
 
         hudPort = new FitViewport(Imagin.V_WIDTH, Imagin.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(hudPort,sb);
@@ -46,21 +47,29 @@ public class Hud implements Disposable{
         restart = new Image(restartTexture);
         levelLabel = new Label("Level 1", new Label.LabelStyle(new BitmapFont(), Color.BLACK));
         levelLabel.setFontScale(2);
-        timerLabel = new Label(String.format("%03d", Math.round(timeCount)), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
-        timerLabel.setFontScale(2);
+        scoreLabel = new Label(String.format("%03d", score), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
+        scoreLabel.setFontScale(2);
 
         table.add(restart).expandX().padTop(18); //pause button alligned with the others
         table.add(levelLabel).expandX().padTop(10);
-        table.add(timerLabel).expandX().padTop(10);
+        table.add(scoreLabel).expandX().padTop(10);
 
         stage.addActor(table);
 
     }
 
     public void update(float dt){
-
         timeCount += dt;
-        if(timeCount >= 1)  timeCount = 0.8f;
+        if(timeCount >= 1){
+            if(score <= 0){
+                score = 0;
+            }
+            else {
+                score--;
+            }
+            scoreLabel.setText(String.format("%04d", score));
+            timeCount = 0;
+        }
     }
 
     @Override
