@@ -78,7 +78,9 @@ public class Boy extends Character {
     }
 
     public void moveDown(){
-        //body.applyLinearImpulse(new Vector2(3f,0), body.getWorldCenter(), true);
+       // body.applyLinearImpulse(new Vector2(0,-2f), body.getWorldCenter(), true);
+        //body.applyForceToCenter(0,-5,true);
+        body.setLinearVelocity(0,-0.0000001f);
         body.setTransform(body.getPosition().x, body.getPosition().y-3f, 0);
         //position.add(0,-5);
         Gdx.app.log("" + bdef.position.y, "");
@@ -89,8 +91,9 @@ public class Boy extends Character {
     }
 
     public void moveLeft(){
+        body.applyLinearImpulse(new Vector2(-2f,0), body.getWorldCenter(), true);
         //bdef.position.set(getPositionX() - 5,getPositionY());
-        body.setTransform(body.getPosition().x-3f, body.getPosition().y, 0);
+        //body.setTransform(body.getPosition().x-3f, body.getPosition().y, 0);
         //position.add(-5,0);
         texture = new Texture("02.png");
         animation = new Animation(new TextureRegion(texture), 4, 0.5f);
@@ -100,7 +103,7 @@ public class Boy extends Character {
 
     public void moveRight(){
        // bdef.position.set(getPositionX() + 5,getPositionY());
-        body.setTransform(body.getPosition().x+3f, body.getPosition().y, 0);
+        body.applyLinearImpulse(new Vector2(2f,0), body.getWorldCenter(), true);
         //position.add(5,0);
         texture = new Texture("03.png");
         animation = new Animation(new TextureRegion(texture), 4, 0.5f);

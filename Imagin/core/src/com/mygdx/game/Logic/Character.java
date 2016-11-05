@@ -25,7 +25,7 @@ public abstract class Character extends Sprite{
     protected Animation animation;
     protected Texture texture;
     public World world;
-    protected Body body;
+    public Body body;
     public BodyDef bdef;
     public Rectangle rectangle;
     public Box2DDebugRenderer b2d;
