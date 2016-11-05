@@ -134,7 +134,7 @@ public class StoreScreen implements Screen{
         table.left();
         table.setFillParent(true);
 
-        moneyLabel = new Label(String.format("%04", game.getMoney()), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        moneyLabel = new Label(String.format("%04d", game.getMoney()), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         moneyLabel.setFontScale(2.3f);
         table.add(moneyLabel).height(65).padLeft(150);
         stage.addActor(table);

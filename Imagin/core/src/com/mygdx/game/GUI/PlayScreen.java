@@ -261,6 +261,10 @@ public class PlayScreen implements Screen {
             game.setScreen(new GameOverScreen(this.game));
         }
 
+        if(win == 1){
+            game.setScreen(new MenuScreen(this.game));
+        }
+
         /*if(win == 1){
             game.setScreen(new );
         }*/
@@ -471,7 +475,7 @@ public class PlayScreen implements Screen {
                     boy.startMoving();
                     girl.startMoving();
                 }
-                if(level2 == false){
+                if(level2 == true){
                     boy.startMoving();
                     dog.startMoving();
                 }

@@ -76,6 +76,8 @@ public class MiniGameScreen implements Screen, InputProcessor{
         Gdx.input.setInputProcessor(this);
 
 
+
+
     }
 
 
@@ -98,6 +100,7 @@ public class MiniGameScreen implements Screen, InputProcessor{
     }
 
     public void update(float dt){
+
         handleInput(dt);
         player.update(dt);
         for(Coin c : coins){
@@ -105,6 +108,7 @@ public class MiniGameScreen implements Screen, InputProcessor{
         }
         if(gameCam.position.y <= 400){
             gameCam.position.y = 400;
+
 
         }
         else {
