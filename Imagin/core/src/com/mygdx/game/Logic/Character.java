@@ -67,4 +67,5 @@ public abstract class Character extends Sprite{
     public abstract void moveDown();
     public abstract void moveRight();
     public abstract void moveLeft();
+    public abstract void startMoving();
 }

@@ -46,13 +46,12 @@ public class StoreScreen implements Screen{
         menuPort = new FitViewport(Imagin.V_WIDTH, Imagin.V_HEIGHT,cam);
         world = new World(new Vector2(0, 0), true);
         boy = new Boy(100,250,4,world);
+        boy.startMoving();
 
         initStage(game.batch);
     }
 
     public void handleInput(float dt) {
-        if(Gdx.input.isTouched())
-            boy.moveDown();
     }
 
     public void update(float dt){

@@ -87,5 +87,8 @@ public class Boy extends Character {
         animation.isMoving = true;
     }
 
+    public void startMoving(){
+        animation.isMoving = true;
+    }
 
 }

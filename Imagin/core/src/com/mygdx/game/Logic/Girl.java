@@ -71,4 +71,8 @@ public class Girl extends Character {
         bdef.position.set(getPositionX() - 5, getPositionY());
         position.add(-5,0);
     }
+
+    public void startMoving(){
+        animation.isMoving = true;
+    }
 }

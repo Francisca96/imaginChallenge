@@ -70,4 +70,8 @@ public class Dog extends Character {
     public void moveUp() {
 
     }
+
+    public void startMoving(){
+        animation.isMoving = true;
+    }
 }
