@@ -31,7 +31,7 @@ public class StoreScreen implements Screen{
 
     public StoreScreen(Imagin game) {
         this.game = game;
-        this.blue = new Texture("blue.png");
+        this.blue = new Texture("shop_background.jpg");
 
         cam = new OrthographicCamera();
         cam.setToOrtho(false);
