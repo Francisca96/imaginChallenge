@@ -1,18 +1,19 @@
 package com.mygdx.game.Logic;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
+import com.mygdx.game.Animation.Animation;
 
 /**
  * Created by Joao on 04-11-2016.
  */
 public class Boy extends Character {
-
     public Boy(float x, float y, int frames, World world){
         super(x, y, frames, world);
-
+        texture = new Texture("03.png");
+        animation = new Animation(new TextureRegion(texture), frames, 0.5f);
     }
 
 
@@ -27,8 +28,8 @@ public class Boy extends Character {
     }
 
     @Override
-    public Texture getTexture() {
-        return texture;
+    public TextureRegion getFrames() {
+        return animation.getFrame();
     }
 
     @Override
@@ -56,21 +57,29 @@ public class Boy extends Character {
 
     public void moveUp(){
         position.add(0,5);
+        texture = new Texture("04.png");
+        animation = new Animation(new TextureRegion(texture), 4, 0.5f);
     }
 
     public void moveDown(){
         bdef.position.set(getPositionX(),getPositionY() - 5);
         position.add(0,-5);
+        texture = new Texture("01.png");
+        animation = new Animation(new TextureRegion(texture), 4, 0.5f);
     }
 
     public void moveLeft(){
         bdef.position.set(getPositionX() + 5,getPositionY());
         position.add(-5,0);
+        texture = new Texture("02.png");
+        animation = new Animation(new TextureRegion(texture), 4, 0.5f);
     }
 
     public void moveRight(){
         bdef.position.set(getPositionX() - 5,getPositionY());
         position.add(5,0);
+        texture = new Texture("03.png");
+        animation = new Animation(new TextureRegion(texture), 4, 0.5f);
     }
 
 
