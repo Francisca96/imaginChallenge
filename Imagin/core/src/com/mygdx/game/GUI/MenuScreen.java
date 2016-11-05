@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -38,6 +40,7 @@ public class MenuScreen implements Screen{
     private ImageButton shopBtn;
     private ImageButton scoresBtn;
     private ImageButton soundBtn;
+    private int touchs;
 
     public MenuScreen(Imagin game){
         this.game = game;
@@ -55,6 +58,12 @@ public class MenuScreen implements Screen{
         if (playBtn.isPressed()) game.setScreen(new PlayScreen(game));
         if(shopBtn.isPressed()) game.setScreen(new StoreScreen(game));
         if(scoresBtn.isPressed()) game.setScreen(new MenuScreen(game));
+
+        if (touchs > 0){
+            if (game.music == true) game.music = false;
+            else if (game.music == false) game.music = true;
+        }
+        touchs =0;
 
     }
 
@@ -137,10 +146,24 @@ public class MenuScreen implements Screen{
         scoresBtn.setPosition(Imagin.V_WIDTH /2 - playBtn.getWidth()/2,Imagin.V_HEIGHT /2 - 330);
         stage.addActor(scoresBtn);
 
-        soundBtn = new ImageButton(skin.getDrawable("soundon"), skin.getDrawable("soundoff"), skin.getDrawable("soundoff"));
+        if (game.music == true)
+            soundBtn = new ImageButton(skin.getDrawable("soundon"), skin.getDrawable("soundoff"), skin.getDrawable("soundoff"));
+        if (game.music == false)
+            soundBtn = new ImageButton(skin.getDrawable("soundoff"), skin.getDrawable("soundon"), skin.getDrawable("soundon"));
         soundBtn.setSize(60, 60);
         soundBtn.setPosition(Imagin.V_WIDTH / 2 - soundBtn.getWidth() / 2 - 180, Imagin.V_HEIGHT / 2 -300);
         stage.addActor(soundBtn);
+
+        soundBtn.addListener(new InputListener() {
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                touchs++;
+            }
+        });
+
 
 
         Gdx.input.setInputProcessor(stage);
