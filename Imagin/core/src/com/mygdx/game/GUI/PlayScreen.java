@@ -5,6 +5,7 @@ package com.mygdx.game.GUI;
  */
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -119,23 +120,34 @@ public class PlayScreen implements Screen {
     }
 
     public void handleInput(float dt) {
-        if(up.isPressed()){
+        if (up.isPressed()) {
             boy.moveUp();
             girl.moveDown();
         }
-        if(down.isPressed()){
+        if (down.isPressed()) {
             boy.moveDown();
             girl.moveUp();
         }
-        if(left.isPressed()){
+        if (left.isPressed()) {
             boy.moveLeft();
             girl.moveRight();
         }
-        if(right.isPressed()){
+        if (right.isPressed()) {
             boy.moveRight();
             girl.moveLeft();
         }
+
+        if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+            int cursor_x = Gdx.input.getX();
+            int cursor_y = Gdx.input.getY();
+            if (cursor_x >= 100 && cursor_x < 140) {
+                if (cursor_y < 100 && cursor_y > 30) {
+                    game.setScreen(new MenuScreen(game));
+                }
+            }
+        }
     }
+
 
     public void update(float dt){
         handleInput(dt);
@@ -229,7 +241,7 @@ public class PlayScreen implements Screen {
         //Up
         up = new ImageButton(skin.getDrawable("arrow-up"));
         up.setSize(70,70);
-        up.setPosition(Imagin.V_WIDTH /2 - up.getWidth()/2 - 50,Imagin.V_HEIGHT /2 - 350);
+        up.setPosition(Imagin.V_WIDTH /2 - up.getWidth()/2  +80,Imagin.V_HEIGHT /2 - 350);
         stage.addActor(up);
 
         up.addListener(new InputListener(){
@@ -265,7 +277,7 @@ public class PlayScreen implements Screen {
         //Down
         down = new ImageButton(skin.getDrawable("arrow-down"));
         down.setSize(70,70);
-        down.setPosition(Imagin.V_WIDTH /2 - down.getWidth()/2 +50 ,Imagin.V_HEIGHT /2 - 350);
+        down.setPosition(Imagin.V_WIDTH /2 - down.getWidth()/2 +170 ,Imagin.V_HEIGHT /2 - 350);
         stage.addActor(down);
 
         down.addListener(new InputListener(){
@@ -284,7 +296,7 @@ public class PlayScreen implements Screen {
         //Right
         right = new ImageButton(skin.getDrawable("arrow-right"));
         right.setSize(70,70);
-        right.setPosition(Imagin.V_WIDTH /2 - right.getWidth()/2 +160 ,Imagin.V_HEIGHT /2 - 350);
+        right.setPosition(Imagin.V_WIDTH /2 - right.getWidth()/2 -50 ,Imagin.V_HEIGHT /2 - 350);
         stage.addActor(right);
 
         right.addListener(new InputListener(){
