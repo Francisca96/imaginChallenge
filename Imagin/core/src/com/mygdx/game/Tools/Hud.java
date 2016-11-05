@@ -43,7 +43,7 @@ public class Hud implements Disposable{
         table.top();
         table.setFillParent(true);
 
-        restartTexture = new Texture("restartBtn.png");
+        restartTexture = new Texture("backBtn.png");
         restart = new Image(restartTexture);
         levelLabel = new Label("Level 1", new Label.LabelStyle(new BitmapFont(), Color.BLACK));
         levelLabel.setFontScale(2);
