@@ -60,8 +60,10 @@ public class MenuScreen implements Screen{
         if(scoresBtn.isPressed()) game.setScreen(new MenuScreen(game));
 
         if (touchs > 0){
-            if (game.music == true) game.music = false;
-            else if (game.music == false) game.music = true;
+            if (game.getMusicB() == true)
+                game.musicB = false;
+            else if (game.getMusicB() == false)
+                game.musicB = true;
         }
         touchs =0;
 
@@ -69,6 +71,10 @@ public class MenuScreen implements Screen{
 
     public void update(float dt){
         handleInput(dt);
+        if(game.musicB == false)
+            game.music.pause();
+        else
+            game.music.play();
     }
 
     @Override
@@ -146,9 +152,9 @@ public class MenuScreen implements Screen{
         scoresBtn.setPosition(Imagin.V_WIDTH /2 - playBtn.getWidth()/2,Imagin.V_HEIGHT /2 - 330);
         stage.addActor(scoresBtn);
 
-        if (game.music == true)
+        if (game.musicB == true)
             soundBtn = new ImageButton(skin.getDrawable("soundon"), skin.getDrawable("soundoff"), skin.getDrawable("soundoff"));
-        if (game.music == false)
+        if (game.musicB == false)
             soundBtn = new ImageButton(skin.getDrawable("soundoff"), skin.getDrawable("soundon"), skin.getDrawable("soundon"));
         soundBtn.setSize(60, 60);
         soundBtn.setPosition(Imagin.V_WIDTH / 2 - soundBtn.getWidth() / 2 - 180, Imagin.V_HEIGHT / 2 -300);

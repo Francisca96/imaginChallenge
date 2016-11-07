@@ -158,11 +158,10 @@ public class PlayScreen implements Screen {
 
 
 
-        if (game.getMusic() == true){
-            music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
-            music.setLooping(true);
-            music.setVolume(1);
-            music.play();
+        if (game.getMusicB() == true){
+            game.music.setLooping(true);
+            game.music.setVolume(1);
+            game.music.play();
         }
 
         initStage(game.batch);
@@ -256,14 +255,18 @@ public class PlayScreen implements Screen {
         if(win == 3){
             //this.dispose();
             game.setScreen(new MiniGameScreen(this.game));
+            if(music != null) music.stop();
         }
 
         if(win == 2){
             game.setScreen(new GameOverScreen(this.game));
+            if (music != null) music.stop();
         }
 
         if(win == 1){
+
             game.setScreen(new WinScreen(this.game));
+            if (music != null) music.stop();
         }
 
         /*if(win == 1){
